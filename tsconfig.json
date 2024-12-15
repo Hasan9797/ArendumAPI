@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /* Basic Compilation Options */
+    "target": "ES6",                          // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
+    "module": "commonjs",                     // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
+
+    /* Directory Structure */
+    "rootDir": "src",                         // TypeScript manba kodlar joylashgan papka.
+    "outDir": "dist",                         // Kompilyatsiyadan chiqqan JavaScript kodlari uchun chiqish papkasi.
+
+    /* Type Checking */
+    "strict": true,                           // Qat'iy tiplash rejimi: barcha strict tiplash imkoniyatlarini yoqadi.
+    "noImplicitAny": true,                    // Aniq turga ega bo‘lmagan (implied `any`) o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
+    "noUnusedLocals": true,                   // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
+    "noUnusedParameters": true,               // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
+    "noImplicitReturns": true,                // Funksiyaning barcha kod yo‘llarida qaytish (return) bo‘lishini tekshiradi.
+
+    /* Module Interoperability */
+    "esModuleInterop": true,                  // CommonJS va ES modullarni moslashuvchan ishlatish imkonini beradi.
+    "allowSyntheticDefaultImports": true,     // Sukut bo‘yicha ES6 modullarni import qilish imkoniyatini beradi.
+
+    /* Module Resolution */
+    "moduleResolution": "node",               // Node.js modullarni qanday izlashni belgilaydi.
+
+    /* JSON Importing */
+    "resolveJsonModule": true,                // JSON fayllarni import qilish imkoniyatini yoqadi.
+
+    /* Source Map */
+    "sourceMap": true,                        // JavaScript kodlari bilan birga source map (manba xaritasi) fayllarni yaratadi.
+
+    /* File Name Casing */
+    "forceConsistentCasingInFileNames": true, // Import qilishda fayl nomlarining katta-kichik harf mosligini tekshiradi.
+
+    /* Skip Library Checks */
+    "skipLibCheck": true,                      // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
+
+    "baseUrl": ".", // Loyihaning ildiz papkasi
+    
+    "paths": {
+      "@/*": ["src/*"] // '@' bilan src papkasiga murojaat qilish imkoniyati
+    }
+  },
+  "include": ["src"],                         // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
+  "exclude": ["node_modules", "dist"]         // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
+}
