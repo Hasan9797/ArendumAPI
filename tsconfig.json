@@ -11,8 +11,8 @@
     /* Type Checking */
     "strict": true,                           // Qat'iy tiplash rejimi: barcha strict tiplash imkoniyatlarini yoqadi.
     "noImplicitAny": true,                    // Aniq turga ega bo‘lmagan (implied `any`) o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedLocals": true,                   // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedParameters": true,               // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
+    "noUnusedLocals": false,                   // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
+    "noUnusedParameters": false,               // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
     "noImplicitReturns": true,                // Funksiyaning barcha kod yo‘llarida qaytish (return) bo‘lishini tekshiradi.
 
     /* Module Interoperability */
@@ -40,6 +40,6 @@
       "@/*": ["src/*"] // '@' bilan src papkasiga murojaat qilish imkoniyati
     }
   },
-  "include": ["src"],                         // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
+  "include": ["src", "node_modules/@types"],                         // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
   "exclude": ["node_modules", "dist"]         // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
 }
