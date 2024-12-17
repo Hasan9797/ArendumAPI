@@ -9,8 +9,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+import userRoutes from "@/routes/user.route";
+
 //Routes
-// app.use('/api/user',);
+app.use('/api/users', userRoutes);
 // app.use('/api/client',);
 // app.use('/api/driver',);
 // app.use('/api/deposit',);
