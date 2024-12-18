@@ -1,10 +1,10 @@
-import { UserQueryDTO } from "@/dto/user/queryFillterDTO";
+import { QueryDTO } from "@/dto/query/queryFillterDTO";
 import userService from "@/services/user.service";
 import { Request, Response } from "express";
 
 
 const getUsers = async (req: Request, res: Response): Promise<void> => {
-    const query: UserQueryDTO = {
+    const query: QueryDTO = {
         page: parseInt(req.query.page as string) || 1,
         limit: parseInt(req.query.limit as string) || 10,
         filters: req.body.filters || [],

@@ -1,22 +1,32 @@
 export interface User {
   id: number;
-  full_name: string;
+  fullName: string;
   phone: string;
   role: number;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Number;
+  updatedAt: Number;
 }
 
 export interface CreateUserDTO {
-  full_name: string;
+  fullName: string;
   phone: string;
   role: number;
+  photoTexPassport: JSON;
+  photoUserPassport: JSON;
+  photoLicense: JSON;
+  photoConfidencePassport: JSON;
+  photoDriverLicense: JSON;
 }
 
 export interface UpdateUserDTO {
-  full_name?: string;
+  fullName?: string;
   phone?: string;
   role?: number;
+  photoTexPassport?: JSON;
+  photoUserPassport?: JSON;
+  photoLicense?: JSON;
+  photoConfidencePassport?: JSON;
+  photoDriverLicense?: JSON;
 }
 
 export interface PaginatedUsers {

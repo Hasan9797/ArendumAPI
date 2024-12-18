@@ -1,8 +1,8 @@
 import prisma from '@/config/prisma';
 import { QueryDTO } from '@/dto/query/queryFillterDTO';
-import { CreateUserDTO, PaginatedUsers, UpdateUserDTO, User } from '@/Interfaces/user.interface';
+import { Category, CreateCategoryDTO, PaginatedCategory, UpdateCategoryDTO } from '@/Interfaces/category.interface'
 
-export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
+export const getCategories = async (query: QueryDTO): Promise<PaginatedCategory> => {
 	const { page, limit, sort, filters } = query;
 
 	const skip = (page - 1) * limit;
@@ -17,7 +17,7 @@ export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
 				const [startDate, endDate] = value.split('_');
 				where[column] = {
 					gte: startDate,
-					lte: endDate,
+					lte: endDate,   
 				};
 			} else {
 				if (operator === 'contains') {
@@ -32,17 +32,17 @@ export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
 			? { [sort.column]: sort.value }
 			: { id: 'desc' };
 
-		const users = await prisma.user.findMany({
+		const categories = await prisma.category.findMany({
 			where,
 			orderBy,
 			skip,
 			take: limit,
 		});
 
-		const total = await prisma.user.count({ where });
+		const total = await prisma.category.count({ where });
 
 		return {
-			data: users,
+			data: categories,
 			pagination: {
 				totalUsers: total,
 				totalPages: Math.ceil(total / limit),
@@ -56,32 +56,32 @@ export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
 	}
 };
 
-const createUser = async (newUser: CreateUserDTO) => {
-	return await prisma.user.create({
+const createCategory = async (newUser: CreateCategoryDTO) => {
+	return await prisma.category.create({
 		data: newUser,
 	});
 };
 
-const getUser = async (id: number) => {
-	return await prisma.user.findUnique({
+const getCategoryById = async (id: number) => {
+	return await prisma.category.findUnique({
 		where: { id },
 	});
 };
 
-const deleteUserById = async (id: number) => {
-	return await prisma.user.delete({
+const deleteCategoryById = async (id: number) => {
+	return await prisma.category.delete({
 		where: { id },
 	});
 };
 
-const updateUserById = async (
+const updateCategoryById = async (
 	id: number,
-	userData: UpdateUserDTO
-): Promise<User | null> => {
+	categoryData: UpdateCategoryDTO
+): Promise<Category | null> => {
 	try {
-		const updatedUser = await prisma.user.update({
+		const updatedUser = await prisma.category.update({
 			where: { id },
-			data: userData,
+			data: categoryData,
 		});
 		return updatedUser;
 	} catch (error) {
@@ -92,9 +92,9 @@ const updateUserById = async (
 
 
 export default {
-	getUsers,
-	createUser,
-	getUser,
-	deleteUserById,
-	updateUserById,
+	getCategories,
+	createCategory,
+	getCategoryById,
+	deleteCategoryById,
+	updateCategoryById,
 }

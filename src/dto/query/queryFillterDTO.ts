@@ -18,7 +18,7 @@ export interface FilterDTO {
 }
 
 // User Query DTO: umumiy request uchun
-export interface UserQueryDTO extends PaginationDTO {
+export interface QueryDTO extends PaginationDTO {
     filters: FilterDTO[];
     sort: SortDTO;
 }
