@@ -1,14 +1,9 @@
 import prisma from '@/config/prisma';
 import { QueryDTO } from '@/dto/query/queryFillterDTO';
-import {
-	CreateCategoryDTO,
-	UpdateCategoryDTO,
-} from '@/dto/user/categoryCreateDTO';
-import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
+import { CreateClientDTO, UpdateClientDTO } from '@/dto/user/clientCreateDTO';
+import { PaginatedClients, Client } from '@/Interfaces/client.Interface';
 
-export const getCategories = async (
-	query: QueryDTO
-): Promise<PaginatedCategory> => {
+export const findAll = async (query: QueryDTO): Promise<PaginatedClients> => {
 	const { page, limit, sort, filters } = query;
 
 	const skip = (page - 1) * limit;
@@ -38,17 +33,17 @@ export const getCategories = async (
 			? { [sort.column]: sort.value }
 			: { id: 'desc' };
 
-		const categories = await prisma.category.findMany({
+		const clients = await prisma.client.findMany({
 			where,
 			orderBy,
 			skip,
 			take: limit,
 		});
 
-		const total = await prisma.category.count({ where });
+		const total = await prisma.client.count({ where });
 
 		return {
-			data: categories,
+			data: clients,
 			pagination: {
 				totalUsers: total,
 				totalPages: Math.ceil(total / limit),
@@ -62,32 +57,32 @@ export const getCategories = async (
 	}
 };
 
-const createCategory = async (newUser: CreateCategoryDTO) => {
-	return await prisma.category.create({
-		data: newUser,
+const createClient = async (newClient: CreateClientDTO) => {
+	return await prisma.client.create({
+		data: newClient,
 	});
 };
 
-const getCategoryById = async (id: number) => {
-	return await prisma.category.findUnique({
+const getById = async (id: number) => {
+	return await prisma.client.findUnique({
 		where: { id },
 	});
 };
 
-const deleteCategoryById = async (id: number) => {
-	return await prisma.category.delete({
+const deleteClientById = async (id: number) => {
+	return await prisma.client.delete({
 		where: { id },
 	});
 };
 
-const updateCategoryById = async (
+const updateClientById = async (
 	id: number,
-	categoryData: UpdateCategoryDTO
-): Promise<Category | null> => {
+	userData: UpdateClientDTO
+): Promise<Client | null> => {
 	try {
-		const updatedUser = await prisma.category.update({
+		const updatedUser = await prisma.client.update({
 			where: { id },
-			data: categoryData,
+			data: userData,
 		});
 		return updatedUser;
 	} catch (error) {
@@ -97,9 +92,9 @@ const updateCategoryById = async (
 };
 
 export default {
-	getCategories,
-	createCategory,
-	getCategoryById,
-	deleteCategoryById,
-	updateCategoryById,
+	findAll,
+	getById,
+	createClient,
+	updateClientById,
+	deleteClientById,
 };

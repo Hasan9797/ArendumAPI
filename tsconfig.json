@@ -38,7 +38,8 @@
     
     "paths": {
       "@/*": ["*"] // '@' bilan src papkasiga murojaat qilish imkoniyati
-    }
+    },
+    "typeRoots": ["./node_modules/@types", "./src/types"] // Add the types folder
   },
   "include": ["src/**/*"],                         // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
   "exclude": ["node_modules", "dist"]         // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).

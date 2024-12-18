@@ -40,7 +40,6 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-
 const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await userService.createUser(req.body);

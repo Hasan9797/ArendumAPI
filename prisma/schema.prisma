@@ -8,12 +8,23 @@ datasource db {
 }
 
 model User {
+  id        Int    @id @default(autoincrement())
+  fullName  String @map("full_name")
+  phone     String @unique
+  role      Int
+  login     String @unique
+  password  String
+  createdAt Int    @default(0) @map("created_at")
+  updatedAt Int    @default(0) @map("updated_at")
+}
+
+model Driver {
   id                      Int    @id @default(autoincrement())
   fullName                String @map("full_name")
   phone                   String @unique
-  role                    Int
+  smsCode                 Int    @default(0) @map("sms_code")
   photoTexPassport        Json   @map("photo_tex_passport")
-  photoUserPassport       Json   @map("photo_user_passport")
+  photoPassport           Json   @map("photo_passport")
   photoLicense            Json   @map("photo_license")
   photoConfidencePassport Json   @map("photo_confidence_passport")
   photoDriverLicense      Json   @map("photo_driver_license")
@@ -21,10 +32,39 @@ model User {
   updatedAt               Int    @default(0) @map("updated_at")
 }
 
-model Category {
+model Client {
   id        Int    @id @default(autoincrement())
+  fullName  String @map("full_name")
+  phone     String @unique
+  smsCode   Int    @default(0) @map("sms_code")
+  createdAt Int    @default(0) @map("created_at")
+  updatedAt Int    @default(0) @map("updated_at")
+}
+
+model Category {
+  id        Int        @id @default(autoincrement())
   title     String
-  logo      String
+  img       String
+  technics  Technics[]
+  createdAt Int        @default(0) @map("created_at")
+  updatedAt Int        @default(0) @map("updated_at")
+}
+
+model Technics {
+  id         Int      @id @default(autoincrement())
+  name       String
+  categoryId Int      @map("category_id")
+  category   Category @relation(fields: [categoryId], references: [id])
+  length     Int
+  createdAt  Int      @default(0) @map("created_at")
+  updatedAt  Int      @default(0) @map("updated_at")
+}
+
+model BankCard {
+  id        Int    @id @default(autoincrement())
+  name      String
+  expire    String
+  userId    Int    @map("user_id")
   createdAt Int    @default(0) @map("created_at")
   updatedAt Int    @default(0) @map("updated_at")
 }

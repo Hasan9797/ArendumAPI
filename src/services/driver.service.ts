@@ -1,15 +1,9 @@
 import userRepository from '@/repositories/user.repo';
-import { User, PaginatedUsers } from '@/Interfaces/user.interface';
-import { QueryDTO } from '@/dto/query/queryFillterDTO';
-import { CreateUserDTO, UpdateUserDTO } from '@/dto/user/userCreateDTO';
-
-const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
-	return await userRepository.getUsers(query);
-};
-
-const getUserById = async (id: number): Promise<User | null> => {
-	return await userRepository.getUser(id);
-};
+import {
+	User,
+	CreateUserDTO,
+	UpdateUserDTO,
+} from '@/Interfaces/user.interface';
 
 const createUser = async (data: CreateUserDTO): Promise<User> => {
 	return await userRepository.createUser(data);

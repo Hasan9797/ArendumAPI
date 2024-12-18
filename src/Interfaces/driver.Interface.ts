@@ -1,4 +1,4 @@
-export interface User {
+export interface Driver {
 	id: number;
 	fullName: string;
 	phone: string;
@@ -8,8 +8,8 @@ export interface User {
 	updatedAt: Number;
 }
 
-export interface PaginatedUsers {
-	data: User[];
+export interface PaginatedDrivers {
+	data: Driver[];
 	pagination: {
 		totalUsers: number;
 		totalPages: number;

@@ -1,15 +1,13 @@
-export interface User {
+export interface Client {
 	id: number;
 	fullName: string;
 	phone: string;
-	login: string;
-	role: number;
 	createdAt: Number;
 	updatedAt: Number;
 }
 
-export interface PaginatedUsers {
-	data: User[];
+export interface PaginatedClients {
+	data: Client[];
 	pagination: {
 		totalUsers: number;
 		totalPages: number;
