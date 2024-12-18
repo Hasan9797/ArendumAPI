@@ -8,19 +8,23 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  full_name  String
-  phone      String   @unique
-  role       Int
-  Photo      Photo[]
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  id                      Int    @id @default(autoincrement())
+  fullName                String @map("full_name")
+  phone                   String @unique
+  role                    Int
+  photoTexPassport        Json   @map("photo_tex_passport")
+  photoUserPassport       Json   @map("photo_user_passport")
+  photoLicense            Json   @map("photo_license")
+  photoConfidencePassport Json   @map("photo_confidence_passport")
+  photoDriverLicense      Json   @map("photo_driver_license")
+  createdAt               Int    @default(0) @map("created_at")
+  updatedAt               Int    @default(0) @map("updated_at")
 }
 
-model Photo {
-  id      Int     @id @default(autoincrement())
-  url     String
-  caption String?
-  user    User    @relation(fields: [userId], references: [id])
-  userId  Int
+model Category {
+  id        Int    @id @default(autoincrement())
+  title     String
+  logo      String
+  createdAt Int    @default(0) @map("created_at")
+  updatedAt Int    @default(0) @map("updated_at")
 }
