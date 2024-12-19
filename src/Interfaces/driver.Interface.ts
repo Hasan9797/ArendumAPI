@@ -1,11 +1,14 @@
+type JSON = any| JSON[];
+
 export interface Driver {
 	id: number;
 	fullName: string;
 	phone: string;
-	login: string;
-	role: number;
-	createdAt: Number;
-	updatedAt: Number;
+	photoTexPassport: JSON;
+	photoPassport: JSON;
+	photoLicense: JSON;
+	photoConfidencePassport: JSON;
+	photoDriverLicense: JSON;
 }
 
 export interface PaginatedDrivers {

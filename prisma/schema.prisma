@@ -22,12 +22,11 @@ model Driver {
   id                      Int    @id @default(autoincrement())
   fullName                String @map("full_name")
   phone                   String @unique
-  smsCode                 Int    @default(0) @map("sms_code")
-  photoTexPassport        Json   @map("photo_tex_passport")
-  photoPassport           Json   @map("photo_passport")
-  photoLicense            Json   @map("photo_license")
-  photoConfidencePassport Json   @map("photo_confidence_passport")
-  photoDriverLicense      Json   @map("photo_driver_license")
+  photoTexPassport        Json   @default("[]") @map("photo_tex_passport")
+  photoPassport           Json   @default("[]") @map("photo_passport")
+  photoLicense            Json   @default("[]") @map("photo_license")
+  photoConfidencePassport Json   @default("[]") @map("photo_confidence_passport")
+  photoDriverLicense      Json   @default("[]") @map("photo_driver_license")
   createdAt               Int    @default(0) @map("created_at")
   updatedAt               Int    @default(0) @map("updated_at")
 }
@@ -36,7 +35,6 @@ model Client {
   id        Int    @id @default(autoincrement())
   fullName  String @map("full_name")
   phone     String @unique
-  smsCode   Int    @default(0) @map("sms_code")
   createdAt Int    @default(0) @map("created_at")
   updatedAt Int    @default(0) @map("updated_at")
 }

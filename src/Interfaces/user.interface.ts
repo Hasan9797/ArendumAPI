@@ -3,6 +3,7 @@ export interface User {
 	fullName: string;
 	phone: string;
 	login: string;
+	password: string;
 	role: number;
 	createdAt: Number;
 	updatedAt: Number;

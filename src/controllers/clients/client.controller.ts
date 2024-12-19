@@ -2,7 +2,7 @@ import { QueryDTO } from '@/dto/query/queryFillterDTO';
 import clientService from '@/services/client.service';
 import { Request, Response } from 'express';
 
-const getAll = async (req: Request, res: Response): Promise<void> => {
+const getAll = async (req: Request, res: Response): Promise<any> => {
 	const query: QueryDTO = {
 		page: parseInt(req.query.page as string) || 1,
 		limit: parseInt(req.query.limit as string) || 10,
@@ -26,7 +26,7 @@ const getAll = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const getById = async (req: Request, res: Response): Promise<void> => {
+const getById = async (req: Request, res: Response): Promise<any> => {
 	try {
 		const user = await clientService.getClientById(parseInt(req.params.id));
 		res.status(200).json(user);
@@ -39,7 +39,7 @@ const getById = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const create = async (req: Request, res: Response): Promise<void> => {
+const create = async (req: Request, res: Response): Promise<any> => {
 	try {
 		const user = await clientService.createClient(req.body);
 		res.status(201).json(user);
@@ -52,7 +52,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const update = async (req: Request, res: Response): Promise<void> => {
+const update = async (req: Request, res: Response): Promise<any> => {
 	try {
 		const user = await clientService.updateClient(
 			parseInt(req.params.id),

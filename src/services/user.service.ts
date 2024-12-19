@@ -1,4 +1,5 @@
 import userRepository from '@/repositories/user.repo';
+import bcrypt from 'bcryptjs';
 import { User, PaginatedUsers } from '@/Interfaces/user.interface';
 import { QueryDTO } from '@/dto/query/queryFillterDTO';
 import { CreateUserDTO, UpdateUserDTO } from '@/dto/user/userCreateDTO';
@@ -12,7 +13,10 @@ const getUserById = async (id: number): Promise<User | null> => {
 };
 
 const createUser = async (data: CreateUserDTO): Promise<User> => {
-	return await userRepository.createUser(data);
+	const passwordHash = bcrypt.hashSync(data.password, 10);
+	
+	const newUser = {...data, password: passwordHash}
+	return await userRepository.createUser(newUser);
 };
 
 const updateUser = async (

@@ -1,29 +1,35 @@
-import userRepository from '@/repositories/user.repo';
-import {
-	User,
-	CreateUserDTO,
-	UpdateUserDTO,
-} from '@/Interfaces/user.interface';
+import { QueryDTO } from '@/dto/query/queryFillterDTO';
+import { CreateDriverDTO, UpdateDriverDTO } from '@/dto/user/driverCreateDTO';
+import { Driver, PaginatedDrivers } from '@/Interfaces/driver.Interface';
+import driverRepository from '@/repositories/driver.repo'
 
-const createUser = async (data: CreateUserDTO): Promise<User> => {
-	return await userRepository.createUser(data);
+const getAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {
+	return await driverRepository.findAll(query);
 };
 
-const updateUser = async (
+const getById = async (id: number): Promise<Driver | null> => {
+	return await driverRepository.getById(id);
+};
+
+const create = async (data: CreateDriverDTO): Promise<Driver> => {
+	return await driverRepository.create(data);
+};
+
+const updateById = async (
 	id: number,
-	data: UpdateUserDTO
-): Promise<User | null> => {
-	return await userRepository.updateUserById(id, data);
+	data: UpdateDriverDTO
+): Promise<Driver | null> => {
+	return await driverRepository.updateById(id, data);
 };
 
-const deleteUser = async (id: number): Promise<User> => {
-	return await userRepository.deleteUserById(id);
+const deleteById = async (id: number) => {
+	return await driverRepository.deleteById(id);
 };
 
 export default {
-	getUsers,
-	getUserById,
-	createUser,
-	updateUser,
-	deleteUser,
+	getAll,
+	getById,
+	create,
+	updateById,
+	deleteById,
 };
