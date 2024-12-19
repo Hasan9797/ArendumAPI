@@ -1,15 +1,17 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import categoryController from "@/controllers/admin/category.controller";
+import categoryController from '@/controllers/admin/category.controller';
+import { authentication, authorization } from '../middleware/auth.middleware';
+import { ROLES } from '@/constants/user-role.constant';
 
 const router = Router();
 
-router.get("/", categoryController.getCategory);
+router.get('/', authentication, categoryController.getCategory);
 
-router.post("/add", categoryController.createCategory);
+router.post('/add', authentication, categoryController.createCategory);
 
-router.put("/update/:id", categoryController.updateCategory);
+router.put('/update/:id', categoryController.updateCategory);
 
-router.delete("/delete/:id", categoryController.deleteCategory);
+router.delete('/delete/:id', categoryController.deleteCategory);
 
 export default router;
