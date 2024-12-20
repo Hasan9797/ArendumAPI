@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+
     /* Basic Compilation Options */
+    "experimentalDecorators": true, // Decorators'ni yoqish
+    "emitDecoratorMetadata": true, // Decorators uchun metadata
+    
     "target": "ES6",                          // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
     "module": "commonjs",                     // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
 

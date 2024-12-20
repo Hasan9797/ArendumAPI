@@ -1,5 +1,7 @@
-import express from "express";
+import express from 'express';
 import dotenv from 'dotenv';
+import 'reflect-metadata';
+
 dotenv.config();
 
 const app = express();
@@ -8,16 +10,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-import userRoute from "@/routes/user.route";
-import authRoute from "@/routes/auth.route";
-import technicsRoute from "@/routes/technics.route";
-import driverRoute from "@/routes/driver.route";
-import clientRoute from "@/routes/client.route";
+import userRoute from '@/routes/user.route';
+import authRoute from '@/routes/auth.route';
+import machinesRoute from '@/routes/machines.route';
+import machinesParamsRoute from '@/routes/machinesParams.route';
+import driverRoute from '@/routes/driver.route';
+import clientRoute from '@/routes/client.route';
 
 //Routes
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/technics', technicsRoute);
+app.use('/api/machines', machinesRoute);
+app.use('/api/machines-params', machinesParamsRoute);
 app.use('/api/driver', driverRoute);
 app.use('/api/client', clientRoute);
 // app.use('/api/deposit',);
