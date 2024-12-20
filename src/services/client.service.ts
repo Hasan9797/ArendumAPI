@@ -1,35 +1,35 @@
-import { QueryDTO } from '@/dto/query/queryFillterDTO';
+import { QueryDTO } from '@/dto/queryFillterDTO';
 import { Client, PaginatedClients } from '@/Interfaces/client.Interface';
-import { CreateClientDTO, UpdateClientDTO } from '@/dto/user/clientCreateDTO';
+import { CreateClientDTO, UpdateClientDTO } from '@/dto/clientDTO';
 import clientRepository from '@/repositories/client.repo';
 
 const getClients = async (query: QueryDTO): Promise<PaginatedClients> => {
-	return await clientRepository.findAll(query);
+  return await clientRepository.findAll(query);
 };
 
 const getClientById = async (id: number): Promise<Client | null> => {
-	return await clientRepository.getById(id);
+  return await clientRepository.getById(id);
 };
 
 const createClient = async (data: CreateClientDTO): Promise<Client> => {
-	return await clientRepository.createClient(data);
+  return await clientRepository.createClient(data);
 };
 
 const updateClient = async (
-	id: number,
-	data: UpdateClientDTO
+  id: number,
+  data: UpdateClientDTO
 ): Promise<Client | null> => {
-	return await clientRepository.updateClientById(id, data);
+  return await clientRepository.updateClientById(id, data);
 };
 
 const deleteClient = async (id: number) => {
-	return await clientRepository.deleteClientById(id);
+  return await clientRepository.deleteClientById(id);
 };
 
 export default {
-	getClients,
-	getClientById,
-	createClient,
-	updateClient,
-	deleteClient,
+  getClients,
+  getClientById,
+  createClient,
+  updateClient,
+  deleteClient,
 };

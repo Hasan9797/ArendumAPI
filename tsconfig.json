@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+
     /* Basic Compilation Options */
+    "experimentalDecorators": true, // Decorators'ni yoqish
+    "emitDecoratorMetadata": true, // Decorators uchun metadata
+    
     "target": "ES6",                          // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
     "module": "commonjs",                     // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
 
@@ -34,12 +38,11 @@
     /* Skip Library Checks */
     "skipLibCheck": true,                      // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
 
-    "typeRoots": ["./node_modules/@types", "./types"], // Typing papkalarini ko‘rsatish
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     },
   },
-  "include": ["src/**/*", "types"],                         // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
+  "include": ["src/**/*", "src/types"],            // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
   "exclude": ["node_modules", "dist"]         // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
 }

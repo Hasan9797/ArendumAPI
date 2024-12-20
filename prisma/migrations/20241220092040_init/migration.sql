@@ -3,7 +3,7 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "full_name" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
-    "role" INTEGER NOT NULL,
+    "role" INTEGER NOT NULL DEFAULT 1,
     "login" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" INTEGER NOT NULL DEFAULT 0,
@@ -40,26 +40,26 @@ CREATE TABLE "Client" (
 );
 
 -- CreateTable
-CREATE TABLE "Category" (
+CREATE TABLE "Machines" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "img" TEXT NOT NULL,
     "created_at" INTEGER NOT NULL DEFAULT 0,
     "updated_at" INTEGER NOT NULL DEFAULT 0,
 
-    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Machines_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Technics" (
+CREATE TABLE "MachineParams" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "category_id" INTEGER NOT NULL,
-    "length" INTEGER NOT NULL,
+    "machine_id" INTEGER NOT NULL,
+    "params" JSONB NOT NULL DEFAULT '[]',
     "created_at" INTEGER NOT NULL DEFAULT 0,
     "updated_at" INTEGER NOT NULL DEFAULT 0,
 
-    CONSTRAINT "Technics_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "MachineParams_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -87,4 +87,4 @@ CREATE UNIQUE INDEX "Driver_phone_key" ON "Driver"("phone");
 CREATE UNIQUE INDEX "Client_phone_key" ON "Client"("phone");
 
 -- AddForeignKey
-ALTER TABLE "Technics" ADD CONSTRAINT "Technics_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "MachineParams" ADD CONSTRAINT "MachineParams_machine_id_fkey" FOREIGN KEY ("machine_id") REFERENCES "Machines"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,4 +1,4 @@
-import { QueryDTO } from '@/dto/query/queryFillterDTO';
+import { QueryDTO } from '@/dto/queryFillterDTO';
 import driverService from '@/services/driver.service';
 import { Request, Response } from 'express';
 
@@ -75,5 +75,5 @@ export default {
 	getById,
 	create,
 	update,
-	distroy
+	distroy,
 };

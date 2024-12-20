@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
 import prisma from '@/config/prisma';
 import { generateToken } from '@/utils/auth.util';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? "secret";
+const REFRESH_SECRET = process.env.REFRESH_SECRET || 'refresh';
 
 // Login
 const login = async (req: Request, res: Response): Promise<any> => {
@@ -39,38 +39,43 @@ const login = async (req: Request, res: Response): Promise<any> => {
 	return res.status(200).json({ message: 'Login successful', token: "Barere: " + token });
 }
 
-// Refresh Token
-const refreshToken = async (req: Request, res: Response): Promise<any> => {
-	const token = req.headers.authorization?.split(' ')[1];
 
-	if (!token) {
-		return res
-			.status(403)
-			.json({ message: 'Access denied, no token provided' });
+
+export const refreshToken = async (
+	req: Request,
+	res: Response
+): Promise<void> => {
+	const { refreshToken } = req.body;
+
+	if (!refreshToken) {
+		res.status(403).json({ message: 'No refresh token provided' });
+		return;
 	}
 
 	try {
-		const decoded = jwt.verify(token, JWT_SECRET) as CustomJwtPayload;
-		const user = await prisma.user.findUnique({
-			where: { id: decoded.id },
-		});
+		const decoded = jwt.verify(refreshToken, REFRESH_SECRET) as { id: number };
 
-		if (!user) {
-			return res.status(401).json({ message: 'Invalid credentials' });
-		}
+		// const tokenRecord = await prisma.token.findUnique({
+		//   where: { token: refreshToken },
+		// });
 
-		const newToken = generateToken({
-			id: user.id,
-			fullName: user.fullName,
-			phone: user.phone,
-			role: user.role,
-		});
+		// if (!tokenRecord) {
+		//   res.status(403).json({ message: 'Invalid refresh token' });
+		//   return;
+		// }
 
-		return res.status(200).json({ message: 'Token refreshed', token: "Barere: " + newToken });
+		// Yangi access token yaratish
+		const accessToken = generateToken(
+			{ id: decoded.id },
+			JWT_SECRET,
+		);
+
+		res.status(200).json({ accessToken });
 	} catch (error) {
-		return res.status(401).json({ message: 'Invalid or expired token' });
+		res.status(403).json({ message: 'Invalid or expired refresh token' });
 	}
 };
+
 
 // Logout
 const logout = async (req: Request, res: Response): Promise<any> => {

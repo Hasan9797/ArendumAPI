@@ -1,101 +1,100 @@
 import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/query/queryFillterDTO';
-import { CreateUserDTO, UpdateUserDTO } from '@/dto/user/userCreateDTO';
+import { QueryDTO } from '@/dto/queryFillterDTO';
+import { CreateUserDTO, UpdateUserDTO } from '@/dto/userDTO';
 import { PaginatedUsers, User } from '@/Interfaces/user.interface';
 
 export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
-	const { page, limit, sort, filters } = query;
+  const { page, limit, sort, filters } = query;
 
-	const skip = (page - 1) * limit;
+  const skip = (page - 1) * limit;
 
-	try {
-		const where: any = {};
+  try {
+    const where: any = {};
 
-		filters.forEach((filter) => {
-			const { column, operator, value } = filter;
+    filters.forEach((filter) => {
+      const { column, operator, value } = filter;
 
-			if (operator === 'between' && column === 'created_at') {
-				const [startDate, endDate] = value.split('_');
-				where[column] = {
-					gte: startDate,
-					lte: endDate,
-				};
-			} else {
-				if (operator === 'contains') {
-					where[column] = { contains: value, mode: 'insensitive' };
-				} else if (operator === 'equals') {
-					where[column] = value;
-				}
-			}
-		});
+      if (operator === 'between' && column === 'created_at') {
+        const [startDate, endDate] = value.split('_');
+        where[column] = {
+          gte: startDate,
+          lte: endDate,
+        };
+      } else {
+        if (operator === 'contains') {
+          where[column] = { contains: value, mode: 'insensitive' };
+        } else if (operator === 'equals') {
+          where[column] = value;
+        }
+      }
+    });
 
-		const orderBy: any = sort?.column
-			? { [sort.column]: sort.value }
-			: { id: 'desc' };
+    const orderBy: any = sort?.column
+      ? { [sort.column]: sort.value }
+      : { id: 'desc' };
 
-		const users = await prisma.user.findMany({
-			where,
-			orderBy,
-			skip,
-			take: limit,
-		});
+    const users = await prisma.user.findMany({
+      where,
+      orderBy,
+      skip,
+      take: limit,
+    });
 
-		const total = await prisma.user.count({ where });
+    const total = await prisma.user.count({ where });
 
-		return {
-			data: users,
-			pagination: {
-				totalUsers: total,
-				totalPages: Math.ceil(total / limit),
-				currentPage: page,
-				pageSize: limit,
-			},
-		};
-	} catch (error) {
-		console.error('Error fetching users:', error);
-		throw new Error('Failed to fetch users');
-	}
+    return {
+      data: users,
+      pagination: {
+        totalUsers: total,
+        totalPages: Math.ceil(total / limit),
+        currentPage: page,
+        pageSize: limit,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw new Error('Failed to fetch users');
+  }
 };
 
 const createUser = async (newUser: CreateUserDTO) => {
-	return await prisma.user.create({
-		data: newUser,
-	});
+  return await prisma.user.create({
+    data: newUser,
+  });
 };
 
 const getUser = async (id: number) => {
-	return await prisma.user.findUnique({
-		where: { id },
-	});
+  return await prisma.user.findUnique({
+    where: { id },
+  });
 };
 
 const deleteUserById = async (id: number) => {
-	return await prisma.user.delete({
-		where: { id },
-	});
+  return await prisma.user.delete({
+    where: { id },
+  });
 };
 
 const updateUserById = async (
-	id: number,
-	userData: UpdateUserDTO
+  id: number,
+  userData: UpdateUserDTO
 ): Promise<User | null> => {
-	try {
-		const updatedUser = await prisma.user.update({
-			where: { id },
-			data: userData,
-		});
-		return updatedUser;
-	} catch (error) {
-		console.error('Error updating user:', error);
-		return null;
-	}
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: userData,
+    });
+    return updatedUser;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    return null;
+  }
 };
 
-
 export default {
-	getUsers,
-	createUser,
-	getUser,
-	deleteUserById,
-	updateUserById,
-}
+  getUsers,
+  createUser,
+  getUser,
+  deleteUserById,
+  updateUserById,
+};

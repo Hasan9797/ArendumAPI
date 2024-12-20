@@ -1,14 +1,17 @@
 import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/query/queryFillterDTO';
 import {
-	CreateCategoryDTO,
-	UpdateCategoryDTO,
-} from '@/dto/user/categoryCreateDTO';
-import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
+	CreateMachineParamsDTO,
+	UpdateMachineParamsDTO,
+} from '@/dto/machineParamsDTO';
 
-export const getCategories = async (
-	query: QueryDTO
-): Promise<PaginatedCategory> => {
+import { QueryDTO } from '@/dto/queryFillterDTO';
+
+import {
+	MachineParams,
+	PaginatedParams,
+} from '@/Interfaces/machineParams.interface';
+
+export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
 	const { page, limit, sort, filters } = query;
 
 	const skip = (page - 1) * limit;
@@ -38,14 +41,14 @@ export const getCategories = async (
 			? { [sort.column]: sort.value }
 			: { id: 'desc' };
 
-		const categories = await prisma.category.findMany({
+		const categories = await prisma.machineParams.findMany({
 			where,
 			orderBy,
 			skip,
 			take: limit,
 		});
 
-		const total = await prisma.category.count({ where });
+		const total = await prisma.machineParams.count({ where });
 
 		return {
 			data: categories,
@@ -62,32 +65,32 @@ export const getCategories = async (
 	}
 };
 
-const createCategory = async (newUser: CreateCategoryDTO) => {
-	return await prisma.category.create({
+const create = async (newUser: CreateMachineParamsDTO) => {
+	return await prisma.machineParams.create({
 		data: newUser,
 	});
 };
 
-const getCategoryById = async (id: number) => {
-	return await prisma.category.findUnique({
+const getById = async (id: number) => {
+	return await prisma.machineParams.findUnique({
 		where: { id },
 	});
 };
 
-const deleteCategoryById = async (id: number) => {
-	return await prisma.category.delete({
+const distroy = async (id: number): Promise<boolean | any> => {
+	return await prisma.machineParams.delete({
 		where: { id },
 	});
 };
 
-const updateCategoryById = async (
+const updateById = async (
 	id: number,
-	categoryData: UpdateCategoryDTO
-): Promise<Category | null> => {
+	machineParamsData: UpdateMachineParamsDTO
+): Promise<MachineParams | null> => {
 	try {
-		const updatedUser = await prisma.category.update({
+		const updatedUser = await prisma.machineParams.update({
 			where: { id },
-			data: categoryData,
+			data: machineParamsData,
 		});
 		return updatedUser;
 	} catch (error) {
@@ -97,9 +100,9 @@ const updateCategoryById = async (
 };
 
 export default {
-	getCategories,
-	createCategory,
-	getCategoryById,
-	deleteCategoryById,
-	updateCategoryById,
+	getAll,
+	create,
+	getById,
+	distroy,
+	updateById,
 };

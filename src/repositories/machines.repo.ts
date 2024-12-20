@@ -1,9 +1,11 @@
 import prisma from '@/config/prisma';
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { CreateDriverDTO, UpdateDriverDTO } from '@/dto/driverDTO';
-import { Driver, PaginatedDrivers } from '@/Interfaces/driver.Interface';
+import { CreateCategoryDTO, UpdateCategoryDTO } from '@/dto/categoryDTO';
+import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
 
-export const findAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {
+export const getCategories = async (
+  query: QueryDTO
+): Promise<PaginatedCategory> => {
   const { page, limit, sort, filters } = query;
 
   const skip = (page - 1) * limit;
@@ -33,17 +35,17 @@ export const findAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {
       ? { [sort.column]: sort.value }
       : { id: 'desc' };
 
-    const drivers = await prisma.driver.findMany({
+    const categories = await prisma.machines.findMany({
       where,
       orderBy,
       skip,
       take: limit,
     });
 
-    const total = await prisma.driver.count({ where });
+    const total = await prisma.machines.count({ where });
 
     return {
-      data: drivers,
+      data: categories,
       pagination: {
         totalUsers: total,
         totalPages: Math.ceil(total / limit),
@@ -57,26 +59,32 @@ export const findAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {
   }
 };
 
-const create = async (newDriver: CreateDriverDTO) => {
-  return await prisma.driver.create({
-    data: newDriver,
+const createCategory = async (newUser: CreateCategoryDTO) => {
+  return await prisma.machines.create({
+    data: newUser,
   });
 };
 
-const getById = async (id: number) => {
-  return await prisma.driver.findUnique({
+const getCategoryById = async (id: number) => {
+  return await prisma.machines.findUnique({
     where: { id },
   });
 };
 
-const updateById = async (
+const deleteCategoryById = async (id: number) => {
+  return await prisma.machines.delete({
+    where: { id },
+  });
+};
+
+const updateCategoryById = async (
   id: number,
-  driverData: UpdateDriverDTO
-): Promise<Driver | null> => {
+  categoryData: UpdateCategoryDTO
+): Promise<Category | null> => {
   try {
-    const updatedUser = await prisma.driver.update({
+    const updatedUser = await prisma.machines.update({
       where: { id },
-      data: driverData,
+      data: categoryData,
     });
     return updatedUser;
   } catch (error) {
@@ -85,16 +93,10 @@ const updateById = async (
   }
 };
 
-const deleteById = async (id: number) => {
-  return await prisma.driver.delete({
-    where: { id },
-  });
-};
-
 export default {
-  findAll,
-  getById,
-  create,
-  updateById,
-  deleteById,
+  getCategories,
+  createCategory,
+  getCategoryById,
+  deleteCategoryById,
+  updateCategoryById,
 };
