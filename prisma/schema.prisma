@@ -11,7 +11,7 @@ model User {
   id        Int    @id @default(autoincrement())
   fullName  String @map("full_name")
   phone     String @unique
-  role      Int
+  role      Int    @default(1)
   login     String @unique
   password  String
   createdAt Int    @default(0) @map("created_at")
@@ -39,23 +39,23 @@ model Client {
   updatedAt Int    @default(0) @map("updated_at")
 }
 
-model Category {
-  id        Int        @id @default(autoincrement())
-  title     String
-  img       String
-  technics  Technics[]
-  createdAt Int        @default(0) @map("created_at")
-  updatedAt Int        @default(0) @map("updated_at")
+model Machines {
+  id            Int             @id @default(autoincrement())
+  title         String
+  img           String
+  machineParams MachineParams[]
+  createdAt     Int             @default(0) @map("created_at")
+  updatedAt     Int             @default(0) @map("updated_at")
 }
 
-model Technics {
-  id         Int      @id @default(autoincrement())
-  name       String
-  categoryId Int      @map("category_id")
-  category   Category @relation(fields: [categoryId], references: [id])
-  length     Int
-  createdAt  Int      @default(0) @map("created_at")
-  updatedAt  Int      @default(0) @map("updated_at")
+model MachineParams {
+  id        Int      @id @default(autoincrement())
+  name      String
+  machineId Int      @map("machine_id")
+  machines  Machines @relation(fields: [machineId], references: [id])
+  params    Json     @default("[]")
+  createdAt Int      @default(0) @map("created_at")
+  updatedAt Int      @default(0) @map("updated_at")
 }
 
 model BankCard {

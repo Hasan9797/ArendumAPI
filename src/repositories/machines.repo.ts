@@ -38,14 +38,14 @@ export const getCategories = async (
 			? { [sort.column]: sort.value }
 			: { id: 'desc' };
 
-		const categories = await prisma.category.findMany({
+		const categories = await prisma.machines.findMany({
 			where,
 			orderBy,
 			skip,
 			take: limit,
 		});
 
-		const total = await prisma.category.count({ where });
+		const total = await prisma.machines.count({ where });
 
 		return {
 			data: categories,
@@ -63,19 +63,19 @@ export const getCategories = async (
 };
 
 const createCategory = async (newUser: CreateCategoryDTO) => {
-	return await prisma.category.create({
+	return await prisma.machines.create({
 		data: newUser,
 	});
 };
 
 const getCategoryById = async (id: number) => {
-	return await prisma.category.findUnique({
+	return await prisma.machines.findUnique({
 		where: { id },
 	});
 };
 
 const deleteCategoryById = async (id: number) => {
-	return await prisma.category.delete({
+	return await prisma.machines.delete({
 		where: { id },
 	});
 };
@@ -85,7 +85,7 @@ const updateCategoryById = async (
 	categoryData: UpdateCategoryDTO
 ): Promise<Category | null> => {
 	try {
-		const updatedUser = await prisma.category.update({
+		const updatedUser = await prisma.machines.update({
 			where: { id },
 			data: categoryData,
 		});

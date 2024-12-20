@@ -5,7 +5,7 @@ import {
 } from '@/dto/user/categoryCreateDTO';
 
 import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
-import categoryRepo from '@/repositories/category.repo';
+import categoryRepo from '@/repositories/machines.repo';
 
 const getCategories = async (query: QueryDTO): Promise<PaginatedCategory> => {
 	return await categoryRepo.getCategories(query);

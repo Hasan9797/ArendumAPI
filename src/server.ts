@@ -10,14 +10,14 @@ app.use(express.urlencoded({ extended: false }));
 
 import userRoute from "@/routes/user.route";
 import authRoute from "@/routes/auth.route";
-import categoryRoute from "@/routes/category.route";
+import technicsRoute from "@/routes/technics.route";
 import driverRoute from "@/routes/driver.route";
 import clientRoute from "@/routes/client.route";
 
 //Routes
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/category', categoryRoute);
+app.use('/api/technics', technicsRoute);
 app.use('/api/driver', driverRoute);
 app.use('/api/client', clientRoute);
 // app.use('/api/deposit',);

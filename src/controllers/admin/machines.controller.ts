@@ -1,9 +1,9 @@
-import { QueryDTO } from "@/dto/query/queryFillterDTO";
-import categoryService from "@/services/category.service";
 import { Request, Response } from "express";
+import { QueryDTO } from "@/dto/query/queryFillterDTO";
+import machinesService from "@/services/machines.service";
+import { RequestCustom } from '@/Interfaces/authenticatedRequest.interface';
 
-
-const getCategory = async (req: Request, res: Response): Promise<void> => {
+const getCategory = async (req: RequestCustom, res: Response): Promise<void> => {
     const query: QueryDTO = {
         page: parseInt(req.query.page as string) || 1,
         limit: parseInt(req.query.limit as string) || 10,
@@ -12,7 +12,7 @@ const getCategory = async (req: Request, res: Response): Promise<void> => {
     };
 
     try {
-        const result = await categoryService.getCategories(query);
+        const result = await machinesService.getCategories(query);
         res.status(200).json({
             success: true,
             data: result.data,
@@ -27,9 +27,9 @@ const getCategory = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-const getCategoryById = async (req: Request, res: Response): Promise<void> => {
+const getCategoryById = async (req: RequestCustom, res: Response): Promise<void> => {
     try {
-        const category = await categoryService.getCategoryById(parseInt(req.params.id));
+        const category = await machinesService.getCategoryById(parseInt(req.params.id));
         res.status(200).json(category);
     } catch (error) {
         console.error('Error fetching categories:', error);
@@ -43,7 +43,7 @@ const getCategoryById = async (req: Request, res: Response): Promise<void> => {
 
 const createCategory = async (req: Request, res: Response): Promise<void> => {
     try {
-        const category = await categoryService.createCategory(req.body);
+        const category = await machinesService.createCategory(req.body);
         res.status(201).json(category);
     } catch (error) {
         console.error('Error fetching category:', error);
@@ -56,7 +56,7 @@ const createCategory = async (req: Request, res: Response): Promise<void> => {
 
 const updateCategory = async (req: Request, res: Response): Promise<void> => {
     try {
-        const category = await categoryService.updateCategory(parseInt(req.params.id), req.body);
+        const category = await machinesService.updateCategory(parseInt(req.params.id), req.body);
         res.status(200).json(category);
     } catch (error) {
         console.error('Error fetching category:', error);
@@ -69,7 +69,7 @@ const updateCategory = async (req: Request, res: Response): Promise<void> => {
 
 const deleteCategory = async (req: Request, res: Response): Promise<void> => {
     try {
-        const category = await categoryService.deleteCategory(parseInt(req.params.id));
+        const category = await machinesService.deleteCategory(parseInt(req.params.id));
         res.status(200).json(category);
     } catch (error) {
         console.error('Error fetching category:', error);

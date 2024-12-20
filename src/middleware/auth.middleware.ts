@@ -1,14 +1,11 @@
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
-import { verifyToken } from '@/utils/auth.util';
 import { Request, Response, NextFunction } from 'express';
-
-interface AuthenticatedRequest extends Request {
-	user?: CustomJwtPayload;
-}
+import { verifyToken } from '@/utils/auth.util';
+import { RequestCustom } from '@/Interfaces/authenticatedRequest.interface';
+import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
 
 // Middleware'da yangi Request tipini ishlating
 export const authentication = (
-	req: AuthenticatedRequest,
+	req: RequestCustom,
 	res: Response,
 	next: NextFunction
 ): void => {
@@ -29,7 +26,8 @@ export const authentication = (
 };
 
 export const authorization = (allowedRoles: number[]) => {
-	return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+	authentication;
+	return (req: RequestCustom, res: Response, next: NextFunction) => {
 		if (!req.user || !allowedRoles.includes(req.user.role)) {
 			res
 				.status(403)
