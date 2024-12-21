@@ -1,11 +1,11 @@
 import prisma from '@/config/prisma';
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { CreateCategoryDTO, UpdateCategoryDTO } from '@/dto/categoryDTO';
-import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
+import { UpdateMachineDTO, CreateMachineDTO } from '@/dto/machinesDTO';
+import { Macchines, PaginatedMacchines } from '@/Interfaces/machines.interface';
 
-export const getCategories = async (
+export const getMachines = async (
   query: QueryDTO
-): Promise<PaginatedCategory> => {
+): Promise<PaginatedMacchines> => {
   const { page, limit, sort, filters } = query;
 
   const skip = (page - 1) * limit;
@@ -59,32 +59,36 @@ export const getCategories = async (
   }
 };
 
-const createCategory = async (newUser: CreateCategoryDTO) => {
+const createMachine = async (newUser: CreateMachineDTO): Promise<Macchines> => {
   return await prisma.machines.create({
     data: newUser,
   });
 };
 
-const getCategoryById = async (id: number) => {
+const getMachineById = async (id: number): Promise<Macchines | null> => {
   return await prisma.machines.findUnique({
     where: { id },
   });
 };
 
-const deleteCategoryById = async (id: number) => {
-  return await prisma.machines.delete({
-    where: { id },
-  });
+const deleteMachineById = async (id: number): Promise<Macchines | null> => {
+  try {
+    return await prisma.machines.delete({
+      where: { id },
+    });
+  } catch (error: any) {
+    throw error.message;
+  }
 };
 
-const updateCategoryById = async (
+const updateMachineById = async (
   id: number,
-  categoryData: UpdateCategoryDTO
-): Promise<Category | null> => {
+  machineData: UpdateMachineDTO
+): Promise<Macchines | null> => {
   try {
     const updatedUser = await prisma.machines.update({
       where: { id },
-      data: categoryData,
+      data: machineData,
     });
     return updatedUser;
   } catch (error) {
@@ -94,9 +98,9 @@ const updateCategoryById = async (
 };
 
 export default {
-  getCategories,
-  createCategory,
-  getCategoryById,
-  deleteCategoryById,
-  updateCategoryById,
+  getMachines,
+  getMachineById,
+  createMachine,
+  updateMachineById,
+  deleteMachineById,
 };

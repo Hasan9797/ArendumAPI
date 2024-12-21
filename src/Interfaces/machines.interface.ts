@@ -1,4 +1,4 @@
-export interface Category {
+export interface Macchines {
     id: number;
     title: string;
     img: string;
@@ -6,8 +6,8 @@ export interface Category {
     updatedAt: Number;
   }
   
-  export interface PaginatedCategory {
-    data: Category[],
+  export interface PaginatedMacchines {
+    data: Macchines[],
     pagination: {
       totalUsers: number,
       totalPages: number,

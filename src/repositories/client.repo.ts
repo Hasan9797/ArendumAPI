@@ -9,7 +9,7 @@ export const findAll = async (query: QueryDTO): Promise<PaginatedClients> => {
   const skip = (page - 1) * limit;
 
   try {
-    const where: any = {};
+    const where: Record<string, any> = {};
 
     filters.forEach((filter) => {
       const { column, operator, value } = filter;

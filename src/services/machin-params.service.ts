@@ -38,7 +38,7 @@ const deleteCategory = async (id: number): Promise<MachineParams> => {
 
 const filtersMachineParams = async (machinId: number): Promise<any> => {
   return [];
-}
+};
 
 export default {
   getCategories,
@@ -46,5 +46,5 @@ export default {
   createCategory,
   updateCategory,
   deleteCategory,
-  filtersMachineParams
+  filtersMachineParams,
 };

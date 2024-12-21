@@ -3,104 +3,98 @@ import { QueryDTO } from '@/dto/queryFillterDTO';
 import machinesService from '@/services/machines.service';
 import { RequestCustom } from '@/Interfaces/authenticatedRequest.interface';
 
-const getCategory = async (
-	req: RequestCustom,
-	res: Response
-): Promise<void> => {
-	const query: QueryDTO = {
-		page: parseInt(req.query.page as string) || 1,
-		limit: parseInt(req.query.limit as string) || 10,
-		filters: req.body.filters || [],
-		sort: req.body.sort || { column: 'id', value: 'desc' },
-	};
+const getAll = async (req: RequestCustom, res: Response): Promise<void> => {
+  const query: QueryDTO = {
+    page: parseInt(req.query.page as string) || 1,
+    limit: parseInt(req.query.limit as string) || 10,
+    filters: req.body.filters || [],
+    sort: req.body.sort || { column: 'id', value: 'desc' },
+  };
 
-	try {
-		const result = await machinesService.getCategories(query);
-		res.status(200).json({
-			success: true,
-			data: result.data,
-			pagination: result.pagination,
-		});
-	} catch (error) {
-		console.error('Error fetching category:', error);
-		res.status(500).json({
-			success: false,
-			message:
-				error instanceof Error ? error.message : 'Failed to fetch category',
-		});
-	}
+  try {
+    const result = await machinesService.getMachines(query);
+    res.status(200).json({
+      success: true,
+      data: result.data,
+      pagination: result.pagination,
+    });
+  } catch (error) {
+    console.error('Error fetching machines:', error);
+    res.status(500).json({
+      success: false,
+      message:
+        error instanceof Error ? error.message : 'Failed to fetch machines',
+    });
+  }
 };
 
-const getCategoryById = async (
-	req: RequestCustom,
-	res: Response
-): Promise<void> => {
-	try {
-		const category = await machinesService.getCategoryById(
-			parseInt(req.params.id)
-		);
-		res.status(200).json(category);
-	} catch (error) {
-		console.error('Error fetching categories:', error);
-		res.status(500).json({
-			success: false,
-			message:
-				error instanceof Error ? error.message : 'Failed to fetch category',
-		});
-	}
+const getById = async (req: RequestCustom, res: Response): Promise<void> => {
+  try {
+    const machine = await machinesService.getMachineById(
+      parseInt(req.params.id)
+    );
+    res.status(200).json(machine);
+  } catch (error) {
+    console.error('Error fetching machine:', error);
+    res.status(500).json({
+      success: false,
+      message:
+        error instanceof Error ? error.message : 'Failed to fetch machine',
+    });
+  }
 };
 
-const createCategory = async (req: Request, res: Response): Promise<void> => {
-	try {
-		const category = await machinesService.createCategory(req.body);
-		res.status(201).json(category);
-	} catch (error) {
-		console.error('Error fetching category:', error);
-		res.status(500).json({
-			success: false,
-			message:
-				error instanceof Error ? error.message : 'Failed to fetch category',
-		});
-	}
+const create = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const machine = await machinesService.createMachine(req.body);
+    res.status(201).json(machine);
+  } catch (error) {
+    console.error('Error fetching machine:', error);
+    res.status(500).json({
+      success: false,
+      message:
+        error instanceof Error ? error.message : 'Failed to fetch machine',
+    });
+  }
 };
 
-const updateCategory = async (req: Request, res: Response): Promise<void> => {
-	try {
-		const category = await machinesService.updateCategory(
-			parseInt(req.params.id),
-			req.body
-		);
-		res.status(200).json(category);
-	} catch (error) {
-		console.error('Error fetching category:', error);
-		res.status(500).json({
-			success: false,
-			message:
-				error instanceof Error ? error.message : 'Failed to fetch category',
-		});
-	}
+const update = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const machine = await machinesService.updateMachine(
+      parseInt(req.params.id),
+      req.body
+    );
+    res.status(200).json(machine);
+  } catch (error) {
+    console.error('Error fetching machine:', error);
+    res.status(500).json({
+      success: false,
+      message:
+        error instanceof Error ? error.message : 'Failed to fetch machine',
+    });
+  }
 };
 
-const deleteCategory = async (req: Request, res: Response): Promise<void> => {
-	try {
-		const category = await machinesService.deleteCategory(
-			parseInt(req.params.id)
-		);
-		res.status(200).json(category);
-	} catch (error) {
-		console.error('Error fetching category:', error);
-		res.status(500).json({
-			success: false,
-			message:
-				error instanceof Error ? error.message : 'Failed to fetch category',
-		});
-	}
+const distroy = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const machine = await machinesService.deleteMachine(
+      parseInt(req.params.id)
+    );
+    res.status(200).json(machine);
+  } catch (error) {
+    console.error('Error fetching machine:', error);
+    res.status(500).json({
+      success: false,
+      message:
+        error instanceof Error ? error.message : 'Failed to fetch machine',
+    });
+  }
 };
 
 export default {
-	getCategory,
-	getCategoryById,
-	createCategory,
-	updateCategory,
-	deleteCategory,
+  getAll,
+  getById,
+  create,
+  update,
+  distroy,
 };
