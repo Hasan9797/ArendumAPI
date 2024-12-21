@@ -28,7 +28,7 @@ export const authentication = (
 export const authorization = (allowedRoles: number[]) => {
 	authentication;
 	return (req: RequestCustom, res: Response, next: NextFunction) => {
-		if (!req.user || !allowedRoles.includes(req.user.role)) {
+		if (!req.user || !req.user.role || !allowedRoles.includes(req.user.role)) {
 			res
 				.status(403)
 				.json({ message: 'Access denied: Invalid or missing role' });

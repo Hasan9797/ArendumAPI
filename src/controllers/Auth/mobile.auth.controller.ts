@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
 import prisma from '@/config/prisma';
 import { sendSms, saveSmsCode, getSmsCode, deleteSmsCode } from '@/services/sms.service';
-import { generateToken } from '@/utils/auth.util';
+import { generateAccessToken, generateRefreshAccessToken } from '@/utils/auth.util';
+import { getFips } from 'crypto';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
 
@@ -61,48 +62,21 @@ const verifySmsCode = async (req: Request, res: Response): Promise<any> => {
 		return res.status(401).json({ message: 'Invalid credentials' });
 	}
 
-	const token = generateToken({
+	const accessToken = generateAccessToken({
 		id: user.id,
 		fullName: user.fullName,
 		phone: user.phone,
 		role: user?.role || 10,
 	})
 
-	return res.status(200).json({ message: 'Verification successful', token: "Barere: " + token });
+	const refreshToken = generateRefreshAccessToken({
+		id: user.id,
+		fullName: user.fullName,
+		phone: user.phone,
+		role: user?.role || 10,
+	})
+
+	return res.status(200).json({ message: 'Verification successful', accessToken, refreshToken });
 };
 
-
-const refreshToken = async (req: Request, res: Response): Promise<any> => {
-	const token = req.headers.authorization?.split(' ')[1];
-
-	if (!token) {
-		return res
-			.status(403)
-			.json({ message: 'Access denied, no token provided' });
-	}
-
-	try {
-		const decoded = jwt.verify(token, JWT_SECRET) as CustomJwtPayload;
-
-		const user = await prisma.user.findUnique({
-			where: { id: decoded.id },
-		});
-
-		if (!user) {
-			return res.status(401).json({ message: 'Invalid credentials' });
-		}
-
-		const newToken = generateToken({
-			id: user.id,
-			fullName: user.fullName,
-			phone: user.phone,
-			role: user?.role || 10,
-		});
-
-		return res.status(200).json({ message: 'Token refreshed', token: newToken });
-	} catch (error) {
-		return res.status(401).json({ message: 'Invalid or expired token' });
-	}
-};
-
-export default { login, verifySmsCode, refreshToken };
+export default { login, verifySmsCode };

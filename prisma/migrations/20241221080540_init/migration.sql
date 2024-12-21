@@ -74,6 +74,18 @@ CREATE TABLE "BankCard" (
     CONSTRAINT "BankCard_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "UserToken" (
+    "id" SERIAL NOT NULL,
+    "token" TEXT NOT NULL,
+    "expire" TEXT NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "created_at" INTEGER NOT NULL DEFAULT 0,
+    "updated_at" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "UserToken_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_phone_key" ON "User"("phone");
 
