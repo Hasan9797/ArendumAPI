@@ -1,17 +1,19 @@
 import prisma from '@/config/prisma';
 import {
-  CreateMachineParamsDTO,
-  UpdateMachineParamsDTO,
-} from '@/dto/machineParamsDTO';
+  CreateParamsFilterDTO,
+  UpdateParamsFilterDTO,
+} from '@/dto/paramsFilterDTO';
 
 import { QueryDTO } from '@/dto/queryFillterDTO';
 
 import {
-  MachineParams,
-  PaginatedParams,
-} from '@/Interfaces/machineParams.interface';
+  ParamsFilter,
+  PaginatedParamsFilter,
+} from '@/Interfaces/params-filter.interface';
 
-export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
+export const getAll = async (
+  query: QueryDTO
+): Promise<PaginatedParamsFilter> => {
   const { page, limit, sort, filters } = query;
 
   const skip = (page - 1) * limit;
@@ -41,17 +43,17 @@ export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
       ? { [sort.column]: sort.value }
       : { id: 'desc' };
 
-    const categories = await prisma.machineParams.findMany({
+    const paramsFilter = await prisma.machineParamsFilters.findMany({
       where,
       orderBy,
       skip,
       take: limit,
     });
 
-    const total = await prisma.machineParams.count({ where });
+    const total = await prisma.machineParamsFilters.count({ where });
 
     return {
-      data: categories,
+      data: paramsFilter,
       pagination: {
         totalUsers: total,
         totalPages: Math.ceil(total / limit),
@@ -65,32 +67,32 @@ export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
   }
 };
 
-const create = async (newUser: CreateMachineParamsDTO) => {
-  return await prisma.machineParams.create({
+const create = async (newUser: CreateParamsFilterDTO) => {
+  return await prisma.machineParamsFilters.create({
     data: newUser,
   });
 };
 
 const getById = async (id: number) => {
-  return await prisma.machineParams.findUnique({
+  return await prisma.machineParamsFilters.findUnique({
     where: { id },
   });
 };
 
 const distroy = async (id: number): Promise<boolean | any> => {
-  return await prisma.machineParams.delete({
+  return await prisma.machineParamsFilters.delete({
     where: { id },
   });
 };
 
 const updateById = async (
   id: number,
-  machineParamsData: UpdateMachineParamsDTO
-): Promise<MachineParams | null> => {
+  paramsFilterData: UpdateParamsFilterDTO
+): Promise<ParamsFilter | null> => {
   try {
-    const updatedUser = await prisma.machineParams.update({
+    const updatedUser = await prisma.machineParamsFilters.update({
       where: { id },
-      data: machineParamsData,
+      data: paramsFilterData,
     });
     return updatedUser;
   } catch (error) {

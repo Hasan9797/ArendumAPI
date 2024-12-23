@@ -13,9 +13,10 @@ app.use(express.urlencoded({ extended: false }));
 import userRoute from '@/routes/user.route';
 import authRoute from '@/routes/auth.route';
 import machinesRoute from '@/routes/machines.route';
-import machinesParamsRoute from '@/routes/machinesParams.route';
+import machinesParamsRoute from '@/routes/machines-params.route';
 import driverRoute from '@/routes/driver.route';
 import clientRoute from '@/routes/client.route';
+import paramsFilterRoute from '@/routes/params-filter.route';
 
 //Routes
 app.use('/api/users', userRoute);
@@ -24,6 +25,7 @@ app.use('/api/machines', machinesRoute);
 app.use('/api/machines-params', machinesParamsRoute);
 app.use('/api/driver', driverRoute);
 app.use('/api/client', clientRoute);
+app.use('/api/params-filter', paramsFilterRoute);
 // app.use('/api/deposit',);
 // app.use('/api/payment',);
 // app.use('/api/region',);

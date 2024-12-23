@@ -1,5 +1,5 @@
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { RequestCustom } from '@/Interfaces/authenticatedRequest.interface';
+import { RequestCustom } from '@/Interfaces/authenticated-request.interface';
 import { Request, Response } from 'express';
 import machinParamsService from '@/services/machin-params.service';
 

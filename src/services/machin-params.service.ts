@@ -7,9 +7,9 @@ import {
 import {
   PaginatedParams,
   MachineParams,
-} from '@/Interfaces/machineParams.interface';
+} from '@/Interfaces/machine-params.interface';
 
-import machineParamsRepo from '@/repositories/machineParams.repo';
+import machineParamsRepo from '@/repositories/machine-params.repo';
 
 const getCategories = async (query: QueryDTO): Promise<PaginatedParams> => {
   return await machineParamsRepo.getAll(query);
