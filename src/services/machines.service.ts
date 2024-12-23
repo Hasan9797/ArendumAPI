@@ -1,36 +1,36 @@
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { CreateCategoryDTO, UpdateCategoryDTO } from '@/dto/categoryDTO';
+import { CreateMachineDTO, UpdateMachineDTO } from '@/dto/machinesDTO';
 
-import { Category, PaginatedCategory } from '@/Interfaces/category.interface';
+import { Macchines, PaginatedMacchines } from '@/Interfaces/machines.interface';
 import categoryRepo from '@/repositories/machines.repo';
 
-const getCategories = async (query: QueryDTO): Promise<PaginatedCategory> => {
-  return await categoryRepo.getCategories(query);
+const getMachines = async (query: QueryDTO): Promise<PaginatedMacchines> => {
+  return await categoryRepo.getMachines(query);
 };
 
-const getCategoryById = async (id: number): Promise<Category | null> => {
-  return await categoryRepo.getCategoryById(id);
+const getMachineById = async (id: number): Promise<Macchines | null> => {
+  return await categoryRepo.getMachineById(id);
 };
 
-const createCategory = async (data: CreateCategoryDTO): Promise<Category> => {
-  return await categoryRepo.createCategory(data);
+const createMachine = async (data: CreateMachineDTO): Promise<Macchines> => {
+  return await categoryRepo.createMachine(data);
 };
 
-const updateCategory = async (
+const updateMachine = async (
   id: number,
-  data: UpdateCategoryDTO
-): Promise<Category | null> => {
-  return await categoryRepo.updateCategoryById(id, data);
+  data: UpdateMachineDTO
+): Promise<Macchines | null> => {
+  return await categoryRepo.updateMachineById(id, data);
 };
 
-const deleteCategory = async (id: number): Promise<Category> => {
-  return await categoryRepo.deleteCategoryById(id);
+const deleteMachine = async (id: number): Promise<any | boolean> => {
+  return await categoryRepo.deleteMachineById(id);
 };
 
 export default {
-  getCategories,
-  getCategoryById,
-  createCategory,
-  updateCategory,
-  deleteCategory,
+  getMachines,
+  getMachineById,
+  createMachine,
+  updateMachine,
+  deleteMachine,
 };

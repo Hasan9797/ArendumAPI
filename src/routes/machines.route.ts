@@ -6,12 +6,19 @@ import { ROLES } from '@/constants/user-role.constant';
 
 const router = Router();
 
-router.get('/', authentication, machinsController.getCategory);
+router.get('/', authentication, machinsController.getAll);
 
-router.post('/add', authorization([4]), machinsController.createCategory);
+router.get('/by/:id', machinsController.getById);
 
-router.put('/update/:id', machinsController.updateCategory);
+router.post(
+  '/add',
+  authentication,
+  authorization([1]),
+  machinsController.create
+);
 
-router.delete('/delete/:id', machinsController.deleteCategory);
+router.put('/update/:id', machinsController.update);
+
+router.delete('/delete/:id', machinsController.distroy);
 
 export default router;

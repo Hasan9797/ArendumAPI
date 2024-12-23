@@ -1,24 +1,13 @@
-// Pagination DTO
-export interface PaginationDTO {
-    page: number;
-    limit: number;
-}
-
-// Sort DTO
-export interface SortDTO {
-    column: string;
-    value: 'asc' | 'desc';
-}
-
-// Filter DTO
-export interface FilterDTO {
-    column: string;
-    operator: string;
-    value: any;
-}
+type Filter = {
+  column: string;
+  operator: 'equals' | 'contains' | 'between';
+  value: string;
+};
 
 // User Query DTO: umumiy request uchun
-export interface QueryDTO extends PaginationDTO {
-    filters: FilterDTO[];
-    sort: SortDTO;
+export interface QueryDTO {
+  page: number;
+  limit: number;
+  filters: Filter[];
+  sort?: { column: string; value: 'asc' | 'desc' };
 }

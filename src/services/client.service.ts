@@ -1,5 +1,5 @@
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { Client, PaginatedClients } from '@/Interfaces/client.Interface';
+import { Client, PaginatedClients } from '@/Interfaces/client.interface';
 import { CreateClientDTO, UpdateClientDTO } from '@/dto/clientDTO';
 import clientRepository from '@/repositories/client.repo';
 

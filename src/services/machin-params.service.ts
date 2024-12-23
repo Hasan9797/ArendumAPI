@@ -7,8 +7,9 @@ import {
 import {
   PaginatedParams,
   MachineParams,
-} from '@/Interfaces/machineParams.interface';
-import machineParamsRepo from '@/repositories/machineParams.repo';
+} from '@/Interfaces/machine-params.interface';
+
+import machineParamsRepo from '@/repositories/machine-params.repo';
 
 const getCategories = async (query: QueryDTO): Promise<PaginatedParams> => {
   return await machineParamsRepo.getAll(query);
@@ -35,10 +36,15 @@ const deleteCategory = async (id: number): Promise<MachineParams> => {
   return await machineParamsRepo.distroy(id);
 };
 
+const filtersMachineParams = async (machinId: number): Promise<any> => {
+  return [];
+};
+
 export default {
   getCategories,
   getCategoryById,
   createCategory,
   updateCategory,
   deleteCategory,
+  filtersMachineParams,
 };

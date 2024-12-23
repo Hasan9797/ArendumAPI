@@ -1,11 +1,19 @@
 import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/queryFillterDTO';
-import { UpdateMachineDTO, CreateMachineDTO } from '@/dto/machinesDTO';
-import { Macchines, PaginatedMacchines } from '@/Interfaces/machines.interface';
+import {
+  CreateParamsFilterDTO,
+  UpdateParamsFilterDTO,
+} from '@/dto/paramsFilterDTO';
 
-export const getMachines = async (
+import { QueryDTO } from '@/dto/queryFillterDTO';
+
+import {
+  ParamsFilter,
+  PaginatedParamsFilter,
+} from '@/Interfaces/params-filter.interface';
+
+export const getAll = async (
   query: QueryDTO
-): Promise<PaginatedMacchines> => {
+): Promise<PaginatedParamsFilter> => {
   const { page, limit, sort, filters } = query;
 
   const skip = (page - 1) * limit;
@@ -35,17 +43,17 @@ export const getMachines = async (
       ? { [sort.column]: sort.value }
       : { id: 'desc' };
 
-    const categories = await prisma.machines.findMany({
+    const paramsFilter = await prisma.machineParamsFilters.findMany({
       where,
       orderBy,
       skip,
       take: limit,
     });
 
-    const total = await prisma.machines.count({ where });
+    const total = await prisma.machineParamsFilters.count({ where });
 
     return {
-      data: categories,
+      data: paramsFilter,
       pagination: {
         totalUsers: total,
         totalPages: Math.ceil(total / limit),
@@ -59,36 +67,32 @@ export const getMachines = async (
   }
 };
 
-const createMachine = async (newUser: CreateMachineDTO): Promise<Macchines> => {
-  return await prisma.machines.create({
+const create = async (newUser: CreateParamsFilterDTO) => {
+  return await prisma.machineParamsFilters.create({
     data: newUser,
   });
 };
 
-const getMachineById = async (id: number): Promise<Macchines | null> => {
-  return await prisma.machines.findUnique({
+const getById = async (id: number) => {
+  return await prisma.machineParamsFilters.findUnique({
     where: { id },
   });
 };
 
-const deleteMachineById = async (id: number): Promise<Macchines | null> => {
-  try {
-    return await prisma.machines.delete({
-      where: { id },
-    });
-  } catch (error: any) {
-    throw error.message;
-  }
+const distroy = async (id: number): Promise<boolean | any> => {
+  return await prisma.machineParamsFilters.delete({
+    where: { id },
+  });
 };
 
-const updateMachineById = async (
+const updateById = async (
   id: number,
-  machineData: UpdateMachineDTO
-): Promise<Macchines | null> => {
+  paramsFilterData: UpdateParamsFilterDTO
+): Promise<ParamsFilter | null> => {
   try {
-    const updatedUser = await prisma.machines.update({
+    const updatedUser = await prisma.machineParamsFilters.update({
       where: { id },
-      data: machineData,
+      data: paramsFilterData,
     });
     return updatedUser;
   } catch (error) {
@@ -98,9 +102,9 @@ const updateMachineById = async (
 };
 
 export default {
-  getMachines,
-  getMachineById,
-  createMachine,
-  updateMachineById,
-  deleteMachineById,
+  getAll,
+  create,
+  getById,
+  distroy,
+  updateById,
 };

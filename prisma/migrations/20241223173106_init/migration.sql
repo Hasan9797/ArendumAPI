@@ -63,6 +63,17 @@ CREATE TABLE "MachineParams" (
 );
 
 -- CreateTable
+CREATE TABLE "MachineParamsFilters" (
+    "id" SERIAL NOT NULL,
+    "machine_id" INTEGER NOT NULL,
+    "filter_params" JSONB NOT NULL DEFAULT '[]',
+    "created_at" INTEGER NOT NULL DEFAULT 0,
+    "updated_at" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "MachineParamsFilters_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "BankCard" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -72,6 +83,18 @@ CREATE TABLE "BankCard" (
     "updated_at" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "BankCard_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserToken" (
+    "id" SERIAL NOT NULL,
+    "token" TEXT NOT NULL,
+    "expire" TEXT NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "created_at" INTEGER NOT NULL DEFAULT 0,
+    "updated_at" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "UserToken_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -88,3 +111,6 @@ CREATE UNIQUE INDEX "Client_phone_key" ON "Client"("phone");
 
 -- AddForeignKey
 ALTER TABLE "MachineParams" ADD CONSTRAINT "MachineParams_machine_id_fkey" FOREIGN KEY ("machine_id") REFERENCES "Machines"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MachineParamsFilters" ADD CONSTRAINT "MachineParamsFilters_machine_id_fkey" FOREIGN KEY ("machine_id") REFERENCES "Machines"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
