@@ -1,8 +1,8 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { CreateMachineDTO, UpdateMachineDTO } from '@/dto/machinesDTO';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import { CreateMachineDTO, UpdateMachineDTO } from '../dto/machinesDTO';
 
-import { Macchines, PaginatedMacchines } from '@/interfaces/machines.interface';
-import categoryRepo from '@/repositories/machines.repo';
+import { Macchines, PaginatedMacchines } from '../interfaces/machines.interface';
+import categoryRepo from '../repositories/machines.repo';
 
 const getMachines = async (query: QueryDTO): Promise<PaginatedMacchines> => {
   return await categoryRepo.getMachines(query);

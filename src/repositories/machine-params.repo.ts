@@ -1,15 +1,15 @@
-import prisma from '@/config/prisma';
+import prisma from '../config/prisma';
 import {
   CreateMachineParamsDTO,
   UpdateMachineParamsDTO,
-} from '@/dto/machine-paramsDTO';
+} from '../dto/machine-paramsDTO';
 
-import { QueryDTO } from '@/dto/query-fillterDTO';
+import { QueryDTO } from '../dto/query-fillterDTO';
 
 import {
   MachineParams,
   PaginatedParams,
-} from '@/interfaces/machine-params.interface';
+} from '../interfaces/machine-params.interface';
 
 export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
   const { page, limit, sort, filters } = query;

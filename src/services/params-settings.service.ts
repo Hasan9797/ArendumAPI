@@ -1,8 +1,8 @@
-import { CreateMachineDTO, UpdateMachineDTO } from '@/dto/machinesDTO';
-import { QueryDTO } from '@/dto/query-fillterDTO';
+import { CreateMachineDTO, UpdateMachineDTO } from '../dto/machinesDTO';
+import { QueryDTO } from '../dto/query-fillterDTO';
 
-import { Macchines, PaginatedMacchines } from '@/interfaces/machines.interface';
-import machinesRepo from '@/repositories/machines.repo';
+import { Macchines, PaginatedMacchines } from '../interfaces/machines.interface';
+import machinesRepo from '../repositories/machines.repo';
 
 const getParamsFilters = async (
   query: QueryDTO

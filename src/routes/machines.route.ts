@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import machinsController from '@/controllers/admin/machines.controller';
+import machinsController from '../controllers/admin/machines.controller';
 import { authentication, authorization } from '../middleware/auth.middleware';
-import { ROLES } from '@/constants/user-role.constant';
+import { ROLES } from '../constants/user-role.constant';
 
 const router = Router();
 

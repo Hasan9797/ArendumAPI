@@ -1,7 +1,7 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { Client, PaginatedClients } from '@/interfaces/client.interface';
-import { CreateClientDTO, UpdateClientDTO } from '@/dto/clientDTO';
-import clientRepository from '@/repositories/client.repo';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import { Client, PaginatedClients } from '../interfaces/client.interface';
+import { CreateClientDTO, UpdateClientDTO } from '../dto/clientDTO';
+import clientRepository from '../repositories/client.repo';
 
 const getClients = async (query: QueryDTO): Promise<PaginatedClients> => {
   return await clientRepository.findAll(query);

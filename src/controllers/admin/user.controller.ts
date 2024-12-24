@@ -1,5 +1,5 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import userService from '@/services/user.service';
+import { QueryDTO } from '../../dto/query-fillterDTO';
+import userService from '../../services/user.service';
 import { Request, Response } from 'express';
 
 const getUsers = async (req: Request, res: Response): Promise<void> => {

@@ -1,6 +1,6 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { RequestCustom } from '@/interfaces/authenticated-request.interface';
-import paramsSettingsService from '@/services/params-settings.service';
+import { QueryDTO } from '../../dto/query-fillterDTO';
+import { RequestCustom } from '../../interfaces/authenticated-request.interface';
+import paramsSettingsService from '../../services/params-settings.service';
 import { Request, Response } from 'express';
 
 const getAll = async (req: RequestCustom, res: Response): Promise<void> => {
