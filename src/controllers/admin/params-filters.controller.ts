@@ -1,5 +1,5 @@
 import { QueryDTO } from '@/dto/queryFillterDTO';
-import { RequestCustom } from '@/interfaces/authenticated-request.interface';
+import { RequestCustom } from '@/Interfaces/authenticated-request.interface';
 import paramsSettingsService from '@/services/params-settings.service';
 import { Request, Response } from 'express';
 
