@@ -1,4 +1,4 @@
-import { CustomJwtPayload } from '@/interfaces/customJwtPayload';
+import { customJwtPayload } from '@/interfaces/customJwtPayload';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret-access-key';
@@ -6,14 +6,14 @@ const JWT_REFRESH_SECRET =
   process.env.JWT_REFRESH_SECRET || 'secret-refresh-key';
 
 export const generateAccessToken = (
-  payload: CustomJwtPayload,
+  payload: customJwtPayload,
   expiresIn: string = '20m'
 ): string => {
   return jwt.sign(payload, JWT_SECRET, { expiresIn });
 };
 
 export const generateRefreshAccessToken = (
-  payload: CustomJwtPayload,
+  payload: customJwtPayload,
   expiresIn: string = '7d'
 ): string => {
   return jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn });

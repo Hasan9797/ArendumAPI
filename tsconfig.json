@@ -1,50 +1,22 @@
 {
   "compilerOptions": {
-    /* Basic Compilation Options */
-    "experimentalDecorators": true, // Decorators'ni yoqish
-    "emitDecoratorMetadata": true, // Decorators uchun metadata
-
-    "target": "ES6", // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
-    "module": "commonjs", // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
-
-    /* Directory Structure */
-    "rootDir": "./src", // TypeScript manba kodlar joylashgan papka.
-    "outDir": "./dist", // Kompilyatsiyadan chiqqan JavaScript kodlari uchun chiqish papkasi.
-
-    /* Type Checking */
-    "strict": true, // Qat'iy tiplash rejimi: barcha strict tiplash imkoniyatlarini yoqadi.
-    "noImplicitAny": true, // Aniq turga ega bo‘lmagan (implied `any`) o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedLocals": false, // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedParameters": false, // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
-    "noImplicitReturns": true, // Funksiyaning barcha kod yo‘llarida qaytish (return) bo‘lishini tekshiradi.
-
-    /* Module Interoperability */
-    "esModuleInterop": true, // CommonJS va ES modullarni moslashuvchan ishlatish imkonini beradi.
-    "allowSyntheticDefaultImports": true, // Sukut bo‘yicha ES6 modullarni import qilish imkoniyatini beradi.
-
-    /* Module Resolution */
-    "moduleResolution": "node", // Node.js modullarni qanday izlashni belgilaydi.
-
-    /* JSON Importing */
-    "resolveJsonModule": true, // JSON fayllarni import qilish imkoniyatini yoqadi.
-
-    /* Source Map */
-    "sourceMap": true, // JavaScript kodlari bilan birga source map (manba xaritasi) fayllarni yaratadi.
-
-    /* File Name Casing */
-    "forceConsistentCasingInFileNames": true, // Import qilishda fayl nomlarining katta-kichik harf mosligini tekshiradi.
-
-    /* Skip Library Checks */
-    "skipLibCheck": true, // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
-
-    /* Path Alias */
-    "baseUrl": "./src", // Manba kodlari `src` papkasida
+    "baseUrl": "./src", // Barcha importlar `src` papkasidan boshlanadi
     "paths": {
-      "@/*": ["*"], // `@` aliasi `src` papkasidagi barcha fayllarga murojaat qiladi
-      "@/Interfaces/*": ["Interfaces/*"], // `@/Interfaces/` aliasini `src/Interfaces/`ga moslashtiradi
-      "@/controllers/*": ["controllers/*"] // `@/controllers/` aliasini `src/controllers/`ga moslashtiradi
-    }
+      "@/*": ["*"] // `@` aliasi `src` papkasidagi barcha fayllarga murojaat qiladi
+    },
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./src" // Manba kodi `src` papkasida
   },
-  "include": ["src"], // Kompilyatsiyaga kiritiladigan fayl va papkalar
-  "exclude": ["node_modules", "dist"] // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalar
+  "include": ["src"], // Faqat `src` papkasidagi fayllarni kompilyatsiyaga qo'shish
+  "exclude": ["node_modules", "dist"] // `node_modules` va `dist` papkalarini chiqarib tashlash
 }
