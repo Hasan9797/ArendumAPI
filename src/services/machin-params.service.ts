@@ -7,7 +7,7 @@ import {
 import {
   PaginatedParams,
   MachineParams,
-} from '@/Interfaces/machine-params.interface';
+} from '@/interfaces/machine-params.interface';
 
 import machineParamsRepo from '@/repositories/machine-params.repo';
 

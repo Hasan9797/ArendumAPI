@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '@/utils/auth.util';
-import { RequestCustom } from '@/Interfaces/authenticated-request.interface';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { RequestCustom } from '@/interfaces/authenticated-request.interface';
+import { CustomJwtPayload } from '@/interfaces/CustomJwtPayload.Interface';
 
 export const authentication = (
   req: RequestCustom,

@@ -1,6 +1,6 @@
 import userRepository from '@/repositories/user.repo';
 import bcrypt from 'bcryptjs';
-import { User, PaginatedUsers } from '@/Interfaces/user.interface';
+import { User, PaginatedUsers } from '@/interfaces/user.interface';
 import { QueryDTO } from '@/dto/queryFillterDTO';
 import { CreateUserDTO, UpdateUserDTO } from '@/dto/userDTO';
 
