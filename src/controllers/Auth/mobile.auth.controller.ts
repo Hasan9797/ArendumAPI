@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { CustomJwtPayload } from '@/interfaces/CustomJwtPayload.Interface';
 import prisma from '@/config/prisma';
 import {
   sendSms,

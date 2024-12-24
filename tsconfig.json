@@ -1,48 +1,47 @@
 {
   "compilerOptions": {
-
     /* Basic Compilation Options */
     "experimentalDecorators": true, // Decorators'ni yoqish
     "emitDecoratorMetadata": true, // Decorators uchun metadata
-    
-    "target": "ES6",                          // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
-    "module": "commonjs",                     // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
+
+    "target": "ES6", // TypeScriptni ES6 (ECMAScript 2015) versiyasiga kompilyatsiya qiladi.
+    "module": "commonjs", // Node.js modullar tizimi bo'lgan CommonJS'ni ishlatadi.
 
     /* Directory Structure */
-    "rootDir": "./src",                         // TypeScript manba kodlar joylashgan papka.
-    "outDir": "./dist",                         // Kompilyatsiyadan chiqqan JavaScript kodlari uchun chiqish papkasi.
+    "rootDir": "./src", // TypeScript manba kodlar joylashgan papka.
+    "outDir": "./dist", // Kompilyatsiyadan chiqqan JavaScript kodlari uchun chiqish papkasi.
 
     /* Type Checking */
-    "strict": true,                           // Qat'iy tiplash rejimi: barcha strict tiplash imkoniyatlarini yoqadi.
-    "noImplicitAny": true,                    // Aniq turga ega bo‘lmagan (implied `any`) o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedLocals": false,                   // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
-    "noUnusedParameters": false,               // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
-    "noImplicitReturns": true,                // Funksiyaning barcha kod yo‘llarida qaytish (return) bo‘lishini tekshiradi.
+    "strict": true, // Qat'iy tiplash rejimi: barcha strict tiplash imkoniyatlarini yoqadi.
+    "noImplicitAny": true, // Aniq turga ega bo‘lmagan (implied `any`) o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
+    "noUnusedLocals": false, // Foydalanilmagan lokal o‘zgaruvchilarni aniqlaydi va xato ko‘rsatadi.
+    "noUnusedParameters": false, // Foydalanilmagan funksiya parametrlarini aniqlaydi va xato ko‘rsatadi.
+    "noImplicitReturns": true, // Funksiyaning barcha kod yo‘llarida qaytish (return) bo‘lishini tekshiradi.
 
     /* Module Interoperability */
-    "esModuleInterop": true,                  // CommonJS va ES modullarni moslashuvchan ishlatish imkonini beradi.
-    "allowSyntheticDefaultImports": true,     // Sukut bo‘yicha ES6 modullarni import qilish imkoniyatini beradi.
+    "esModuleInterop": true, // CommonJS va ES modullarni moslashuvchan ishlatish imkonini beradi.
+    "allowSyntheticDefaultImports": true, // Sukut bo‘yicha ES6 modullarni import qilish imkoniyatini beradi.
 
     /* Module Resolution */
-    "moduleResolution": "node",               // Node.js modullarni qanday izlashni belgilaydi.
+    "moduleResolution": "node", // Node.js modullarni qanday izlashni belgilaydi.
 
     /* JSON Importing */
-    "resolveJsonModule": true,                // JSON fayllarni import qilish imkoniyatini yoqadi.
+    "resolveJsonModule": true, // JSON fayllarni import qilish imkoniyatini yoqadi.
 
     /* Source Map */
-    "sourceMap": true,                        // JavaScript kodlari bilan birga source map (manba xaritasi) fayllarni yaratadi.
+    "sourceMap": true, // JavaScript kodlari bilan birga source map (manba xaritasi) fayllarni yaratadi.
 
     /* File Name Casing */
     "forceConsistentCasingInFileNames": true, // Import qilishda fayl nomlarining katta-kichik harf mosligini tekshiradi.
 
     /* Skip Library Checks */
-    "skipLibCheck": true,                      // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
+    "skipLibCheck": true, // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
 
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"]
-    },
+      "@/*": ["*"]
+    }
   },
-  "include": ["src/**/*", "src/types"],            // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
-  "exclude": ["node_modules", "dist"]         // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
+  "include": ["src"], // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
+  "exclude": ["node_modules", "dist"] // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
 }

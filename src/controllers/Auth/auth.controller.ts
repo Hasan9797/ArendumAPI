@@ -6,7 +6,7 @@ import {
   generateAccessToken,
   generateRefreshAccessToken,
 } from '@/utils/auth.util';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { CustomJwtPayload } from '@/interfaces/CustomJwtPayload.Interface';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh';

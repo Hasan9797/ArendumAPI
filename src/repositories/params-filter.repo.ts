@@ -9,7 +9,7 @@ import { QueryDTO } from '@/dto/queryFillterDTO';
 import {
   ParamsFilter,
   PaginatedParamsFilter,
-} from '@/Interfaces/params-filter.interface';
+} from '@/interfaces/params-filter.interface';
 
 export const getAll = async (
   query: QueryDTO
