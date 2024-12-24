@@ -2,14 +2,14 @@ import prisma from '@/config/prisma';
 import {
   CreateParamsFilterDTO,
   UpdateParamsFilterDTO,
-} from '@/dto/paramsFilterDTO';
+} from '@/dto/params-filterDTO';
 
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 
 import {
   ParamsFilter,
   PaginatedParamsFilter,
-} from '@/Interfaces/params-filter.interface';
+} from '@/interfaces/params-filter.interface';
 
 export const getAll = async (
   query: QueryDTO

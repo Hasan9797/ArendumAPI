@@ -1,7 +1,7 @@
 import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 import { CreateUserDTO, UpdateUserDTO } from '@/dto/userDTO';
-import { PaginatedUsers, User } from '@/Interfaces/user.interface';
+import { PaginatedUsers, User } from '@/interfaces/user.interface';
 
 export const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
   const { page, limit, sort, filters } = query;

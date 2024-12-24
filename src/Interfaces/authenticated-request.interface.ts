@@ -1,7 +1,6 @@
-import { Request } from "express";
-import { CustomJwtPayload } from "./CustomJwtPayload.Interface";
+import { Request } from 'express';
+import { CustomJwtPayload } from './customJwtPayload';
 
-export interface RequestCustom extends Request
-{
-    user?: CustomJwtPayload;
+export interface RequestCustom extends Request {
+  user?: CustomJwtPayload;
 }

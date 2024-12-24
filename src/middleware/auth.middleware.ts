@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '@/utils/auth.util';
-import { RequestCustom } from '@/Interfaces/authenticated-request.interface';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { RequestCustom } from '@/interfaces/authenticated-request.interface';
+import { customJwtPayload } from '@/interfaces/customJwtPayload';
 
 export const authentication = (
   req: RequestCustom,
@@ -16,7 +16,7 @@ export const authentication = (
   }
 
   try {
-    const decoded = verifyToken(token) as CustomJwtPayload;
+    const decoded = verifyToken(token) as customJwtPayload;
     req.user = decoded;
     next();
   } catch (error) {

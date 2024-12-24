@@ -1,7 +1,7 @@
 import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 import { UpdateMachineDTO, CreateMachineDTO } from '@/dto/machinesDTO';
-import { Macchines, PaginatedMacchines } from '@/Interfaces/machines.interface';
+import { Macchines, PaginatedMacchines } from '@/interfaces/machines.interface';
 
 export const getMachines = async (
   query: QueryDTO

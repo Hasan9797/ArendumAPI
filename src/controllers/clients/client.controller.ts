@@ -1,4 +1,4 @@
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 import clientService from '@/services/client.service';
 import { Request, Response } from 'express';
 
