@@ -37,9 +37,10 @@
     /* Skip Library Checks */
     "skipLibCheck": true, // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
 
-    "baseUrl": "src/",
+    "baseUrl": "./src", // Manba kodlari `src` papkasida bo'lsa
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["*"], // `@` aliasi `src` papkasidagi barcha fayllarga murojaat qiladi
+      "@/Interfaces/*": ["Interfaces/*"] // `@/Interfaces/` aliasini `src/Interfaces/`ga moslashtiradi
     }
   },
   "include": ["src"], // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).

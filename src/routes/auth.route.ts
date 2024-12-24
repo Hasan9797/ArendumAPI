@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import mobileAuthController from "@/controllers/Auth/mobile.auth.controller";
-import authController from "@/controllers/Auth/auth.controller";
+import mobileAuthController from "@/controllers/auth/mobile.auth.controller";
+import authController from "@/controllers/auth/auth.controller";
 
 const router = Router();
 
