@@ -1,7 +1,7 @@
-import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { CreateClientDTO, UpdateClientDTO } from '@/dto/clientDTO';
-import { PaginatedClients, Client } from '@/interfaces/client.interface';
+import prisma from '../config/prisma';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import { CreateClientDTO, UpdateClientDTO } from '../dto/clientDTO';
+import { PaginatedClients, Client } from '../interfaces/client.interface';
 
 export const findAll = async (query: QueryDTO): Promise<PaginatedClients> => {
   const { page, limit, sort, filters } = query;

@@ -10,13 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-import userRoute from '@/routes/user.route';
-import authRoute from '@/routes/auth.route';
-import machinesRoute from '@/routes/machines.route';
-import machinesParamsRoute from '@/routes/machines-params.route';
-import driverRoute from '@/routes/driver.route';
-import clientRoute from '@/routes/client.route';
-import paramsFilterRoute from '@/routes/params-filter.route';
+import userRoute from './routes/user.route';
+import authRoute from './routes/auth.route';
+import machinesRoute from './routes/machines.route';
+import machinesParamsRoute from './routes/machines-params.route';
+import driverRoute from './routes/driver.route';
+import clientRoute from './routes/client.route';
+import paramsFilterRoute from './routes/params-filter.route';
 
 //Routes
 app.use('/api/users', userRoute);

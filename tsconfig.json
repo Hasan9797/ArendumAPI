@@ -1,22 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src", // Barcha importlar `src` papkasidan boshlanadi
-    "paths": {
-      "@/*": ["*"] // `@` aliasi `src` papkasidagi barcha fayllarga murojaat qiladi
-    },
-    "target": "ES6",
+    "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
     "outDir": "./dist",
-    "rootDir": "./src" // Manba kodi `src` papkasida
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
   },
-  "include": ["src"], // Faqat `src` papkasidagi fayllarni kompilyatsiyaga qo'shish
-  "exclude": ["node_modules", "dist"] // `node_modules` va `dist` papkalarini chiqarib tashlash
+  "exclude": ["node_modules", "dist"]
 }

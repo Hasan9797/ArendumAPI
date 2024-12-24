@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import prisma from '@/config/prisma';
+import prisma from '../../config/prisma';
 import {
   generateAccessToken,
   generateRefreshAccessToken,
-} from '@/utils/auth.util';
-import { customJwtPayload } from '@/interfaces/customJwtPayload';
+} from '../../utils/auth.util';
+import { customJwtPayload } from '../../interfaces/customJwtPayload';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh';

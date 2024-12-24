@@ -1,17 +1,16 @@
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import { customJwtPayload } from '@/interfaces/customJwtPayload';
-import prisma from '@/config/prisma';
+import { customJwtPayload } from '../interfaces/customJwtPayload';
+import prisma from '../config/prisma';
 import {
   sendSms,
   saveSmsCode,
   getSmsCode,
   deleteSmsCode,
-} from '@/services/sms.service';
+} from '../services/sms.service';
 import {
   generateAccessToken,
   generateRefreshAccessToken,
-} from '@/utils/auth.util';
+} from '../utils/auth.util';
 
 const SMS_CODE_EXPIRATION = 5 * 60 * 1000; // 5 daqiqa
 

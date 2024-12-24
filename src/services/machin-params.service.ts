@@ -1,15 +1,15 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
+import { QueryDTO } from '../dto/query-fillterDTO';
 import {
   CreateMachineParamsDTO,
   UpdateMachineParamsDTO,
-} from '@/dto/machine-paramsDTO';
+} from '../dto/machine-paramsDTO';
 
 import {
   PaginatedParams,
   MachineParams,
-} from '@/interfaces/machine-params.interface';
+} from '../interfaces/machine-params.interface';
 
-import machineParamsRepo from '@/repositories/machine-params.repo';
+import machineParamsRepo from '../repositories/machine-params.repo';
 
 const getCategories = async (query: QueryDTO): Promise<PaginatedParams> => {
   return await machineParamsRepo.getAll(query);

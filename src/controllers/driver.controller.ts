@@ -1,8 +1,8 @@
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import clientService from '@/services/client.service';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import driverService from '../services/driver.service';
 import { Request, Response } from 'express';
 
-const getAll = async (req: Request, res: Response): Promise<any> => {
+const getAll = async (req: Request, res: Response): Promise<void> => {
   const query: QueryDTO = {
     page: parseInt(req.query.page as string) || 1,
     limit: parseInt(req.query.limit as string) || 10,
@@ -11,7 +11,7 @@ const getAll = async (req: Request, res: Response): Promise<any> => {
   };
 
   try {
-    const result = await clientService.getClients(query);
+    const result = await driverService.getAll(query);
     res.status(200).json({
       success: true,
       data: result.data,
@@ -26,9 +26,9 @@ const getAll = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const getById = async (req: Request, res: Response): Promise<any> => {
+const getById = async (req: Request, res: Response): Promise<void> => {
   try {
-    const user = await clientService.getClientById(parseInt(req.params.id));
+    const user = await driverService.getById(parseInt(req.params.id));
     res.status(200).json(user);
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -39,9 +39,9 @@ const getById = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const create = async (req: Request, res: Response): Promise<any> => {
+const create = async (req: Request, res: Response): Promise<void> => {
   try {
-    const user = await clientService.createClient(req.body);
+    const user = await driverService.create(req.body);
     res.status(201).json(user);
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -52,9 +52,9 @@ const create = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const update = async (req: Request, res: Response): Promise<any> => {
+const update = async (req: Request, res: Response): Promise<void> => {
   try {
-    const user = await clientService.updateClient(
+    const user = await driverService.updateById(
       parseInt(req.params.id),
       req.body
     );
@@ -68,7 +68,7 @@ const update = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const distroy = async (req: Request, res: Response) => {};
+const distroy = async (req: Request, res: Response): Promise<void> => {};
 
 export default {
   getAll,

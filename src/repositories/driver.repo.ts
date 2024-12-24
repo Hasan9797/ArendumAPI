@@ -1,7 +1,7 @@
-import prisma from '@/config/prisma';
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { CreateDriverDTO, UpdateDriverDTO } from '@/dto/driverDTO';
-import { Driver, PaginatedDrivers } from '@/interfaces/driver.interface';
+import prisma from '../config/prisma';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import { CreateDriverDTO, UpdateDriverDTO } from '../dto/driverDTO';
+import { Driver, PaginatedDrivers } from '../interfaces/driver.interface';
 
 export const findAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {
   const { page, limit, sort, filters } = query;

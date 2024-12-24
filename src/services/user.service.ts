@@ -1,8 +1,8 @@
-import userRepository from '@/repositories/user.repo';
+import userRepository from '../repositories/user.repo';
 import bcrypt from 'bcryptjs';
-import { User, PaginatedUsers } from '@/interfaces/user.interface';
-import { QueryDTO } from '@/dto/query-fillterDTO';
-import { CreateUserDTO, UpdateUserDTO } from '@/dto/userDTO';
+import { User, PaginatedUsers } from '../interfaces/user.interface';
+import { QueryDTO } from '../dto/query-fillterDTO';
+import { CreateUserDTO, UpdateUserDTO } from '../dto/userDTO';
 
 const getUsers = async (query: QueryDTO): Promise<PaginatedUsers> => {
   return await userRepository.getUsers(query);

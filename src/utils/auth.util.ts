@@ -1,4 +1,4 @@
-import { customJwtPayload } from '@/interfaces/customJwtPayload';
+import { customJwtPayload } from '../interfaces/customJwtPayload';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret-access-key';
