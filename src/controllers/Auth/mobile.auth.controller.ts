@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { customJwtPayload } from '@/interfaces/customJwtPayload';
 import prisma from '@/config/prisma';
 import {
   sendSms,
@@ -72,7 +72,7 @@ const verifySmsCode = async (req: Request, res: Response): Promise<any> => {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  const payload: CustomJwtPayload = {
+  const payload: customJwtPayload = {
     id: user.id,
     fullName: user.fullName,
     phone: user.phone,

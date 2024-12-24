@@ -1,6 +1,6 @@
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 import { CreateDriverDTO, UpdateDriverDTO } from '@/dto/driverDTO';
-import { Driver, PaginatedDrivers } from '@/Interfaces/driver.interface';
+import { Driver, PaginatedDrivers } from '@/interfaces/driver.interface';
 import driverRepository from '@/repositories/driver.repo';
 
 const getAll = async (query: QueryDTO): Promise<PaginatedDrivers> => {

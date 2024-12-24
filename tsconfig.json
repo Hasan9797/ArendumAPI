@@ -37,12 +37,14 @@
     /* Skip Library Checks */
     "skipLibCheck": true, // `.d.ts` (tiplash fayllari) fayllarini tekshirishni o‘chiradi, bu kompilyatsiyani tezlashtiradi.
 
-    "baseUrl": "./src", // Manba kodlari `src` papkasida bo'lsa
+    /* Path Alias */
+    "baseUrl": "./src", // Manba kodlari `src` papkasida
     "paths": {
       "@/*": ["*"], // `@` aliasi `src` papkasidagi barcha fayllarga murojaat qiladi
-      "@/Interfaces/*": ["Interfaces/*"] // `@/Interfaces/` aliasini `src/Interfaces/`ga moslashtiradi
+      "@/Interfaces/*": ["Interfaces/*"], // `@/Interfaces/` aliasini `src/Interfaces/`ga moslashtiradi
+      "@/controllers/*": ["controllers/*"] // `@/controllers/` aliasini `src/controllers/`ga moslashtiradi
     }
   },
-  "include": ["src"], // Kompilyatsiyaga kiritiladigan fayl va papkalarni belgilaydi (faqat `src` papkasi ichidagi fayllar).
-  "exclude": ["node_modules", "dist"] // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalarni belgilaydi (`node_modules` va `dist` papkalar).
+  "include": ["src"], // Kompilyatsiyaga kiritiladigan fayl va papkalar
+  "exclude": ["node_modules", "dist"] // Kompilyatsiyadan chiqarib tashlanadigan fayl va papkalar
 }

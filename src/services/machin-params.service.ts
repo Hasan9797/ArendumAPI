@@ -1,13 +1,13 @@
-import { QueryDTO } from '@/dto/queryFillterDTO';
+import { QueryDTO } from '@/dto/query-fillterDTO';
 import {
   CreateMachineParamsDTO,
   UpdateMachineParamsDTO,
-} from '@/dto/machineParamsDTO';
+} from '@/dto/machine-paramsDTO';
 
 import {
   PaginatedParams,
   MachineParams,
-} from '@/Interfaces/machine-params.interface';
+} from '@/interfaces/machine-params.interface';
 
 import machineParamsRepo from '@/repositories/machine-params.repo';
 

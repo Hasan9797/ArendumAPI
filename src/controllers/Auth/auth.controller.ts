@@ -6,7 +6,7 @@ import {
   generateAccessToken,
   generateRefreshAccessToken,
 } from '@/utils/auth.util';
-import { CustomJwtPayload } from '@/Interfaces/CustomJwtPayload.Interface';
+import { customJwtPayload } from '@/interfaces/customJwtPayload';
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh';
@@ -34,7 +34,7 @@ const login = async (req: Request, res: Response): Promise<any> => {
       return res.status(401).json({ message: 'Invalid login or password' });
     }
 
-    const payload: CustomJwtPayload = {
+    const payload: customJwtPayload = {
       id: user.id,
       fullName: user.fullName,
       phone: user.phone,
@@ -75,7 +75,7 @@ const refreshToken = async (req: Request, res: Response): Promise<any> => {
     const decoded = jwt.verify(
       userRefreshToken,
       JWT_REFRESH_SECRET
-    ) as CustomJwtPayload;
+    ) as customJwtPayload;
 
     const useruserRefreshToken = await prisma.userToken.findFirst({
       where: { token: userRefreshToken },
