@@ -9,7 +9,7 @@ import { QueryDTO } from '@/dto/queryFillterDTO';
 import {
   MachineParams,
   PaginatedParams,
-} from '@/interfaces/machine-params.interface';
+} from '@/Interfaces/machine-params.interface';
 
 export const getAll = async (query: QueryDTO): Promise<PaginatedParams> => {
   const { page, limit, sort, filters } = query;
